@@ -1,0 +1,44 @@
+@mixin transition($ms) {
+  -webkit-transition: all $ms ease-in-out;
+  -moz-transition: all $ms ease-in-out;
+  -ms-transition: all $ms ease-in-out;
+  -o-transition: all $ms ease-in-out;
+  transition: all $ms ease-in-out;
+}
+
+@mixin translateY($rem) {  
+  -webkit-transform: translateY($rem);
+  -moz-transform: translateY($rem);
+  -ms-transform: translateY($rem);
+  -o-transform: translateY($rem);
+  transform: translateY($rem);
+}
+
+@mixin transitionDelay($ms){
+  -webkit-transition-delay: $ms;
+  -moz-transition-delay: $ms;
+  -ms-transition-delay: $ms;
+  -o-transition-delay: $ms;
+  transition-delay: $ms;
+}
+
+@mixin borderRadius($radius){
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin scale($scale){
+  -webkit-transform: scale($scale);
+  -moz-transform: scale($scale);
+  -ms-transform: scale($scale);
+  -o-transform: scale($scale);
+  transform: scale($scale);
+}
+
+@mixin blur($rem){
+  -webkit-filter: blur($rem);
+  -moz-filter: blur($rem);
+  -ms-filter: blur($rem);
+  -o-filter: blur($rem);
+  filter: blur($rem);
+}
