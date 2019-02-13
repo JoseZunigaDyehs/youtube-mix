@@ -2,7 +2,11 @@
   "name": "youtube-mix",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/youtube-mix/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoseZunigaDyehs/youtube-mix.git"
+  },
+  "homepage": "https://josezunigadyehs.github.io/youtube-mix/",
   "dependencies": {
     "@types/crypto-js": "^3.1.43",
     "axios": "^0.18.0",
