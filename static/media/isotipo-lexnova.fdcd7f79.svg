@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="228px" height="228px" viewBox="0 0 228 228" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>Isotipo</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0.00095 0 227.8955 0 227.8955 228 0.00095 228"></polygon>
+    </defs>
+    <g id="Interfaz" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.319475446">
+        <g id="Login" transform="translate(-897.000000, -165.000000)">
+            <g id="Isotipo" transform="translate(897.000000, 165.000000)">
+                <path d="M172.875307,108 L54.1175559,108 C47.294148,108 47.294148,119 54.1175559,119 L172.875307,119 C179.708231,119 179.708231,108 172.875307,108" id="Fill-1" fill="#FFFFFF"></path>
+                <path d="M172.875307,61 L54.1175559,61 C47.294148,61 47.294148,72 54.1175559,72 L172.875307,72 C179.708231,72 179.708231,61 172.875307,61" id="Fill-3" fill="#FFFFFF"></path>
+                <path d="M172.875307,152 L54.1175559,152 C47.294148,152 47.294148,163 54.1175559,163 L172.875307,163 C179.708231,163 179.708231,152 172.875307,152" id="Fill-5" fill="#FFFFFF"></path>
+                <g id="Group-9">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Clip-8"></g>
+                    <path d="M113.95345,216.714 C57.34295,216.714 11.27745,170.639 11.27745,114.0095 C11.27745,57.3705 57.34295,11.286 113.95345,11.286 C170.56395,11.286 216.61995,57.3705 216.61995,114.0095 C216.61995,170.639 170.56395,216.714 113.95345,216.714 M227.89645,114.0095 C227.89645,51.148 176.77695,0 113.95345,0 C51.12045,0 0.00095,51.148 0.00095,114.0095 C0.00095,176.8615 51.12045,228 113.95345,228 C176.77695,228 227.89645,176.8615 227.89645,114.0095" id="Fill-7" fill="#FFFFFF" mask="url(#mask-2)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
