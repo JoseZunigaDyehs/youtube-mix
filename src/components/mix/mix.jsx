@@ -1,10 +1,16 @@
 import React, { Component } from "react";
 import MixFader from "./mix-fader";
-import TrackYT from "./track-youtube";
 import PannelSearch from "../pannel/pannel-search";
 import { CONSTANTS } from "../../utilities/utilities";
+import MixVideo from "./mix-video";
 
 let loadYT;
+
+/**
+ * Tiene los botones 
+ * Tiene las acciones de los botones
+ * renderiza ambos videos y este componente debe tener todas las acciones
+ */
 
 class Mix extends Component {
   state = {
@@ -150,7 +156,6 @@ class Mix extends Component {
       this.player.setVolume(porcFirstTrack);
       this.playerTwo.setVolume(porcSecondTrack);
   };
-
   onPointerHandle = (e) => {
     const { trackStates } = this.props;
     if(!trackStates.get("fader")){
@@ -168,8 +173,7 @@ class Mix extends Component {
     }
   };
   content = () => {
-    const { trackStates } = this.props,
-      selected = trackStates.get("selected");
+
     return (
       <React.Fragment>
         <div
@@ -178,35 +182,9 @@ class Mix extends Component {
             this.onPointerHandle(e);
           }}
         >
-          <div
-            className={`mixtrack ${selected === 0 ? " selected" : ""}`}
-            onClick={() => {
-              this.setSelected(0);
-            }}
-          >
-            <div
-              ref={r => {
-                // debugger;
-                this.youtubePlayerAnchorOne = r;
-              }}
-            />
-          </div>
+          <MixVideo setSelected={this.setSelected} videoNumber={0} reference={r => {this.youtubePlayerAnchorOne = r;}} {...this.props} />
           <MixFader setFaderMix={this.setFaderMix} {...this.props} positionFader={this.state.positionFader}/>
-          <div
-            className={`mixtrack secondVideo${
-              selected === 1 ? " selected" : ""
-            }`}
-            onClick={() => {
-              this.setSelected(1);
-            }}
-          >
-            <div
-              ref={r => {
-                // debugger;
-                this.youtubePlayerAnchorTwo = r;
-              }}
-            />
-          </div>
+          <MixVideo setSelected={this.setSelected} videoNumber={1} reference={r => {this.youtubePlayerAnchorTwo = r;}} {...this.props} />
           <PannelSearch {...this.props} setSound={this.setSound} />
         </div>
         <div className="buttons">{this.fillButtons()}</div>
