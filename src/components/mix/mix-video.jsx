@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import MixDuration from "./mix-duration";
+import React from "react";
+// import MixDuration from "./mix-duration";
 
-class MixVideo extends Component {
-  content = () => {
-    const { trackStates, setSelected, videoNumber, reference } = this.props,
+function MixVideo (props) {
+  function content() {
+    const { trackStates, setSelected, videoNumber, reference } = props,
     selected = trackStates.get("selected");
     return (
         <div
@@ -19,13 +19,11 @@ class MixVideo extends Component {
         <div
           ref={reference}
         />
-        <MixDuration />
+        {/* <MixDuration /> */}
       </div>
     );
   };
-  render = () => {
-    return this.content();
-  };
+  return content();
 }
 
 export default MixVideo;

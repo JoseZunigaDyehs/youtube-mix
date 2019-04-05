@@ -1,16 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
 
-class MixFader extends Component {
-  toggleOver = () => {
-    const { trackStates } = this.props;
-    this.props.toggleFader(!trackStates.get("fader"));
+function MixFader(props){
+  function toggleOver() {
+    const { trackStates } = props;
+    props.toggleFader(!trackStates.get("fader"));
   };
-  content = () => {
+  function content() {
     const style = {
-      left: this.props.positionFader - 10,
+      left: props.positionFader - 10,
       top: 0
     };
-    const { trackStates } = this.props;
+    const { trackStates } = props;
     if(trackStates.get("fader")){
       style.cursor = "col-resize";
     }else{
@@ -21,14 +21,14 @@ class MixFader extends Component {
         style={style}
         className={trackStates.get("fader") ? "mixfader over" : "mixfader"}
         onClick={() => {
-          this.toggleOver();
+          toggleOver();
         }}
       />
     );
   };
-  render = () => {
-    return this.content();
-  };
+  
+  return content();
+  
 }
 
 export default MixFader;

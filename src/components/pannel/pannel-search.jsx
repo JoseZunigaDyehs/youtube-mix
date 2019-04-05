@@ -1,49 +1,41 @@
-import React, { Component } from "react";
+import React, { useState, useRef } from "react";
 import YTSearch from "youtube-api-search"
-import Mix from "../mix/mix";
 
-class PannelSearch extends Component {
-    state = {
-        videos: []
-    }
-  input = React.createRef();
-  youtubeSearch = (term) => {
+function PannelSearch(props) {
+  const [videos,setVideos] = useState([]);
+  const input = useRef(null);
+  function youtubeSearch(term){
     YTSearch({key:"AIzaSyDXHdaBBkea1HeDMBlcpu5f0VWVRHg_8Ls",term},(data)=>{
-        // debugger
-        this.setState({videos:data})
+        setVideos({videos:data})
     })
   }
-  clickHandle = (video) => {
+  function clickHandle(video) {
     const {id} = video;
-    this.props.setSound(id.videoId);
+    props.setSound(id.videoId);
   }
-  changeHandle = () => {
-      const value = this.input.current.value;
-      this.youtubeSearch(value);
+  function changeHandle(){
+      const value = input.current.value;
+      youtubeSearch(value);
   }
-  listSearch = () => {
-      const { videos } = this.state;
-    // debugger
+  function listSearch() {
     const vid = videos.map((map,i)=>{
-        return <span key={map.id.videoId} onClick={()=>{this.clickHandle(map)}}>{map.snippet.title}</span>
+        return <span key={map.id.videoId} onClick={()=>{clickHandle(map)}}>{map.snippet.title}</span>
     })
 
     return <div className="list">{vid}</div>
   }
-  content = () => {
-      const { searchStates } = this.props,
+  function content() {
+      const { searchStates } = props,
         isActive = searchStates.get("isActive");
     return (
-      <div className={`pannel-search ${isActive?'active':''}`}>
-        <input className="find" type="text" ref={this.input} onChange={()=>{this.changeHandle()}}/>
-        {this.listSearch()}
-      </div>
+      <section className={`pannel-search ${isActive?'active':''}`}>
+        <input className="find" type="text" ref={input} onChange={()=>{changeHandle()}}/>
+        {listSearch()}
+      </section>
     );
   };
 
-  render = () => {
-    return this.content();
-  };
+  return content();
 }
 
 export default PannelSearch;

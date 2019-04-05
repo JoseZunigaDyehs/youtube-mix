@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Mix from "../mix/mix";
 // import Button from "../buttons/button";
 // import ButtonLoad from "../buttons/button-load";
@@ -10,21 +10,19 @@ import Mix from "../mix/mix";
  * Todo se le pasa a Mix
  */
 
-class Pannel extends Component {
+function Pannel(props) {
 
-  content = () => {
+  function content() {
     return (
-      <div
+      <main
         className="pannel"
       >
-        <Mix {...this.props}/>
-      </div>
+        <Mix {...props}/>
+      </main>
     );
   };
 
-  render = () => {
-    return this.content();
-  };
+  return content();
 }
 
 export default Pannel;
