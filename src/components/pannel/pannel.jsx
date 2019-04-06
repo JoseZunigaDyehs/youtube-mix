@@ -4,15 +4,9 @@ import Mix from "../mix/mix";
 // import ButtonLoad from "../buttons/button-load";
 // import Pizzicato from "pizzicato";
 
-/**
- * Tengo los dos players de youtube
- * y sus acciones
- * Todo se le pasa a Mix
- */
-
 function Pannel(props) {
 
-  function content() {
+  const content = () => {
     return (
       <main
         className="pannel"

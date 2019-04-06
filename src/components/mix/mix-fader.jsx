@@ -1,30 +1,29 @@
-import React from "react";
+import React, {useMemo} from "react";
+import PropTypes from 'prop-types';
 
 function MixFader(props){
-  function toggleOver() {
-    const { trackStates } = props;
-    props.toggleFader(!trackStates.get("fader"));
+  const toggleOver = () =>  {
+    const { trackStates, toggleFader } = props;
+    toggleFader(!trackStates.get("fader"));
   };
-  function content() {
-    const style = {
-      left: props.positionFader - 10,
+  const content = () => {
+    const {positionFader,trackStates} = props,
+      style = {
+      left: positionFader - 10,
       top: 0
     };
-    const { trackStates } = props;
     if(trackStates.get("fader")){
       style.cursor = "col-resize";
     }else{
       style.cursor = "pointer";
     }
-    return (
-      <div
-        style={style}
-        className={trackStates.get("fader") ? "mixfader over" : "mixfader"}
-        onClick={() => {
-          toggleOver();
-        }}
-      />
-    );
+    return useMemo(() =>       <div
+    style={style}
+    className={trackStates.get("fader") ? "mixfader over" : "mixfader"}
+    onClick={() => {
+      toggleOver();
+    }}
+  />, [positionFader, trackStates])
   };
   
   return content();
@@ -32,3 +31,8 @@ function MixFader(props){
 }
 
 export default MixFader;
+
+MixFader.propTypes = {
+  trackStates: PropTypes.any.isRequired,
+  positionFader: PropTypes.number.isRequired
+}
