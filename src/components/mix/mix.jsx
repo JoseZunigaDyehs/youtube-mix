@@ -173,7 +173,7 @@ class Mix extends Component {
     }
   };
   content = () => {
-
+    debugger
     return (
       <React.Fragment>
         <div

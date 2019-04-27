@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 //Div que hace referencia al objeto padre (iframe API Youtube)
 function MixVideo(props) {
   const content = () => {
+    debugger
     const { trackStates, setSelected, videoNumber, reference } = props,
       selected = trackStates.get("selected");
     //es como el shouldcomponentupdate, usa memo y le pasa los parámetros para comparar

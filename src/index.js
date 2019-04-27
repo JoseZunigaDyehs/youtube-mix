@@ -1,21 +1,26 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import { store } from './store/store.js';
 import * as serviceWorker from './serviceWorker';
-import Router from './router';
 
-// render(
-//   <Router>
-//     <AppRoutes />
-//   </Router>,
-//   document.getElementById('root')
-// );
+import Pannel from "./components/pannel/pannel"
+
+import { StateProvider } from './state';
+import {reducer} from "./reducers/index"
+
+const App = () => {
+  const initialState = {
+    theme: { primary: 'green' }
+  };
+  
+  return (
+    <StateProvider initialState={initialState} reducer={reducer}>
+        <Pannel />
+    </StateProvider>
+  );
+}
 
 render(
-  <Provider store={store}>
-    <Router/>
-  </Provider>,
+  <App/>,
   document.getElementById('root')
 );
 
