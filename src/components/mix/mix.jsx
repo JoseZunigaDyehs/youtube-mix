@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React, { useContext, useEffect, useRef } from "react";
+import { StoreContext } from "../../context/store/storeContext";
 import MixFader from "./mix-fader";
 import PannelSearch from "../pannel/pannel-search";
 import { CONSTANTS } from "../../utilities/utilities";
 import MixVideo from "./mix-video";
 
-let loadYT;
+let player, playerTwo;
 
 /**
  * Tiene los botones 
@@ -12,130 +13,156 @@ let loadYT;
  * renderiza ambos videos y este componente debe tener todas las acciones
  */
 
-class Mix extends Component {
-  state = {
-    positionFader: window.innerWidth / 2 - 5,
-    total: window.innerWidth,
-    buttons: [
-      {
-        type: "CURRENT",
-        name: "PLAY",
-        icon: "",
-        function: () => {
-          this.play();
-        }
-      },
-      {
-        type: "CURRENT",
-        name: "PAUSE",
-        icon: "",
-        function: () => {
-          this.pause();
-        }
-      },
-      {
-        type: "CURRENT",
-        name: "STOP",
-        icon: "",
-        function: () => {
-          this.stop();
-        }
-      },
-      {
-        type: "LOAD",
-        name: "LOAD",
-        icon: "",
-        function: () => {
-          this.toggleSearch();
-        }
+//TO DO : Pasar todo a Hooks
+
+const Mix = () => {
+  
+  const { state, actions } = useContext(StoreContext);
+  let youtubePlayerAnchorOne = useRef(null);
+  let youtubePlayerAnchorTwo = useRef(null);
+
+  useEffect(() => {
+    loadYoutube();
+  }, []);
+  
+  const buttons =  [
+    {
+      type: "CURRENT",
+      name: "PLAY",
+      icon: "",
+      function: () => {
+        play();
       }
-    ]
-  };
-  componentDidMount = () => {
-    if (loadYT === undefined) {
-      this.loadYoutube();
+    },
+    {
+      type: "CURRENT",
+      name: "PAUSE",
+      icon: "",
+      function: () => {
+        pause();
+      }
+    },
+    {
+      type: "CURRENT",
+      name: "STOP",
+      icon: "",
+      function: () => {
+        stop();
+      }
+    },
+    {
+      type: "LOAD",
+      name: "LOAD",
+      icon: "",
+      function: () => {
+        toggleSearch();
+      }
     }
-  };
-  loadYoutube = () => {
-    loadYT = new Promise((resolve, reject) => {
-      const tag = document.createElement("script");
-      tag.src = "https://www.youtube.com/iframe_api";
-      const firstScriptTag = document.getElementsByTagName("script")[0];
+  ]
+
+  //VER playerssssss
+  const loadYoutube = () => {
+    if(!window.YT){
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      window.onYouTubeIframeAPIReady = loadVideos;
+      const firstScriptTag = document.getElementsByTagName('script')[0];
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-      return window.onYouTubeIframeAPIReady = () => resolve(window.YT)
-    });
-    
-    loadYT
-      .then(YT => {
-        this.player = new YT.Player(this.youtubePlayerAnchorOne, {
-          videoId: "S-sJp1FfG7Q",
-          width: "100%",
-          height: "100%",
-          playerVars: {
-            controls: 0,
-            rel: 0
-          },
-          events: {
-            onReady: this.onReadyYoutube
-          }
-        });
-        this.playerTwo = new YT.Player(this.youtubePlayerAnchorTwo, {
-          videoId: "zzkf4x1grXY",
-          width: "100%",
-          height: "100%",
-          playerVars: {
-            controls: 0,
-            rel: 0
-          },
-          events: {
-            onReady: this.onReadyYoutube
-          }
-        });
-      })
-      .catch(err => {
-        debugger
-        console.log(err);
-      });
-  };
-  onReadyYoutube = event => {
+
+  }else{
+      loadVideos();
+  }
+}
+
+const loadVideos = () => {
+
+  player = new window.YT.Player(youtubePlayerAnchorOne, {
+    videoId: "S-sJp1FfG7Q",
+    width: "100%",
+    height: "100%",
+    playerVars: {
+      controls: 0,
+      rel: 0
+    },
+    events: {
+      onReady: onReadyYoutube
+    }
+  });
+
+  playerTwo = new window.YT.Player(youtubePlayerAnchorTwo, {
+    videoId: "zzkf4x1grXY",
+    width: "100%",
+    height: "100%",
+    playerVars: {
+      controls: 0,
+      rel: 0
+    },
+    events: {
+      onReady: onReadyYoutube
+    }
+  });
+
+}
+  const onReadyYoutube = event => {
     event.target.setVolume(50);
   };
+
   //BUTTONS EVENTS
-  setSelected = trackNumber => {
-    this.props.setSelected(trackNumber);
-  };
-  play = () => {
-    const { trackStates } = this.props,
-      selected = trackStates.get("selected");
+  const play = () => {
+    const { mix } = state,
+      selected = mix.selected;
     selected === 0
-      ? this.player.playVideo()
-      : this.playerTwo.playVideo().playVideo();
+      ? player.playVideo()
+      : playerTwo.playVideo().playVideo();
   };
-  stop = () => {
-    const { trackStates } = this.props,
-      selected = trackStates.get("selected");
-    selected === 0 ? this.player.stopVideo() : this.playerTwo.stopVideo();
+  const stop = () => {
+    const { mix } = state,
+      selected = mix.selected;
+    selected === 0 ? player.stopVideo() : playerTwo.stopVideo();
   };
-  pause = () => {
-    const { trackStates } = this.props,
-      selected = trackStates.get("selected");
-    selected === 0 ? this.player.pauseVideo() : this.playerTwo.pauseVideo();
+  const pause = () => {
+    const { mix } = state,
+      selected = mix.selected;
+    selected === 0 ? player.pauseVideo() : playerTwo.pauseVideo();
   };
-  setSound = sound => {
-    const { trackStates } = this.props,
-      selected = trackStates.get("selected");
+  const setSound = sound => {
+    const { mix } = state,
+      selected = mix.selected;
     selected === 0
-      ? this.player.loadVideoById(sound, 0, CONSTANTS.QUALITY)
-      : this.playerTwo.loadVideoById(sound, 0, CONSTANTS.QUALITY);
-    this.props.toggleSearch();
+      ? player.loadVideoById(sound, 0, CONSTANTS.QUALITY)
+      : playerTwo.loadVideoById(sound, 0, CONSTANTS.QUALITY);
+    actions.search.toggleSearch();
   };
-  toggleSearch() {
-    this.props.toggleSearch();
+  const toggleSearch = () => {
+    actions.search.toggleSearch();
     const find = document.documentElement.getElementsByClassName("find")[0];
     find.focus();
   }
-  fillButtons = () => {
-    return this.state.buttons.map((button, i) => {
+  const setFaderMix = position => {
+    const { total } = state.mix,
+      porcSecondTrack = (position * 100) / total,
+      porcFirstTrack = 100 - porcSecondTrack;
+    player.setVolume(porcFirstTrack);
+    playerTwo.setVolume(porcSecondTrack);
+  };
+  const onPointerHandle = (e) => {
+    const { mix } = state;
+    if (!mix.fader) {
+      return;
+    } else {
+      let left = e.screenX;
+      if (left > mix.total - 10) {
+        left = mix.total - 10;
+      } else if (left < 20) {
+        left = 10;
+      }
+      actions.mix.setPositionFaderMix(left);
+      setFaderMix(mix.positionFader);
+    }
+  };
+
+  const fillButtons = () => {
+    return buttons.map((button, i) => {
       return (
         <div key={i} className={button.name.toLowerCase() + " button"}>
           <button
@@ -149,51 +176,25 @@ class Mix extends Component {
       );
     });
   };
-  setFaderMix = position => {
-    const { total } = this.state,
-      porcSecondTrack = (position * 100) / total,
-      porcFirstTrack = 100 - porcSecondTrack;
-      this.player.setVolume(porcFirstTrack);
-      this.playerTwo.setVolume(porcSecondTrack);
-  };
-  onPointerHandle = (e) => {
-    const { trackStates } = this.props;
-    if(!trackStates.get("fader")){
-      return;
-    }else{
-      let left = e.screenX;
-      if(left>this.state.total - 10){
-        left = this.state.total - 10;
-      }else if(left<20){
-        left = 10;
-      }
-      this.setState({positionFader:left},()=>{
-        this.setFaderMix(this.state.positionFader)
-      });
-    }
-  };
-  content = () => {
-    debugger
+
+  const content = () => {
     return (
       <React.Fragment>
         <div
           className="mix"
           onPointerMove={e => {
-            this.onPointerHandle(e);
+            onPointerHandle(e);
           }}
         >
-          <MixVideo setSelected={this.setSelected} videoNumber={0} reference={r => {this.youtubePlayerAnchorOne = r;}} {...this.props} />
-          <MixFader setFaderMix={this.setFaderMix} {...this.props} positionFader={this.state.positionFader}/>
-          <MixVideo setSelected={this.setSelected} videoNumber={1} reference={r => {this.youtubePlayerAnchorTwo = r;}} {...this.props} />
-          <PannelSearch {...this.props} setSound={this.setSound} />
+          <MixVideo videoNumber={0} reference={r => { youtubePlayerAnchorOne = r; }} />
+          <MixFader />
+          <MixVideo videoNumber={1} reference={r => { youtubePlayerAnchorTwo = r; }} />
+          <PannelSearch setSound={setSound} />
         </div>
-        <div className="buttons">{this.fillButtons()}</div>
+        <div className="buttons">{fillButtons()}</div>
       </React.Fragment>
     );
   };
-  render = () => {
-    return this.content();
-  };
+  return content();
 }
-
 export default Mix;

@@ -1,38 +1,39 @@
-import React, {useMemo} from "react";
-import PropTypes from 'prop-types';
+import React, { useMemo, useContext } from "react";
+import { StoreContext } from "../../context/store/storeContext";
 
-function MixFader(props){
-  const toggleOver = () =>  {
-    const { trackStates, toggleFader } = props;
-    toggleFader(!trackStates.get("fader"));
+function MixFader() {
+  const { state, actions } = useContext(StoreContext);
+
+  const toggleOver = () => {
+    const { mix } = state;
+    actions.mix.toggleFader(!mix.fader);
   };
+
   const content = () => {
-    const {positionFader,trackStates} = props,
+    // debugger
+    const { mix } = state,
       style = {
-      left: positionFader - 10,
-      top: 0
-    };
-    if(trackStates.get("fader")){
+        left: mix.positionFader - 10,
+        top: 0
+      };
+
+    if (mix.fader) {
       style.cursor = "col-resize";
-    }else{
+    } else {
       style.cursor = "pointer";
     }
-    return useMemo(() =>       <div
-    style={style}
-    className={trackStates.get("fader") ? "mixfader over" : "mixfader"}
-    onClick={() => {
-      toggleOver();
-    }}
-  />, [positionFader, trackStates])
+
+    return useMemo(() => <div
+      style={style}
+      className={mix.fader ? "mixfader over" : "mixfader"}
+      onClick={() => {
+        toggleOver();
+      }}
+    />, [mix])
   };
-  
+
   return content();
-  
+
 }
 
 export default MixFader;
-
-MixFader.propTypes = {
-  trackStates: PropTypes.any.isRequired,
-  positionFader: PropTypes.number.isRequired
-}

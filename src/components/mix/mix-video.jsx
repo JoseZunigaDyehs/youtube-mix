@@ -1,13 +1,16 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useContext } from "react";
+import { StoreContext } from "../../context/store/storeContext";
 import PropTypes from "prop-types";
 // import MixDuration from "./mix-duration";
 
 //Div que hace referencia al objeto padre (iframe API Youtube)
 function MixVideo(props) {
+  const { state, actions } = useContext(StoreContext);
+
   const content = () => {
-    debugger
-    const { trackStates, setSelected, videoNumber, reference } = props,
-      selected = trackStates.get("selected");
+    const { videoNumber, reference } = props,
+      { mix } = state,
+      selected = mix.selected;
     //es como el shouldcomponentupdate, usa memo y le pasa los parámetros para comparar
     return useMemo(() => (
       <div
@@ -15,13 +18,13 @@ function MixVideo(props) {
           videoNumber === 0 ? "" : " secondVideo"
         }`}
         onClick={() => {
-          setSelected(videoNumber);
+          actions.mix.setSelected(videoNumber);
         }}
       >
         <div ref={reference} />
         {/* <MixDuration /> */}
       </div>
-    ),[trackStates,setSelected,videoNumber,reference]);
+    ),[mix,videoNumber,reference]);
 
     // );
   };
@@ -31,8 +34,6 @@ function MixVideo(props) {
 export default MixVideo;
 
 MixVideo.propTypes = {
-  trackStates: PropTypes.any.isRequired,
-  setSelected: PropTypes.func.isRequired,
   videoNumber: PropTypes.number.isRequired,
   reference: PropTypes.any.isRequided
 };

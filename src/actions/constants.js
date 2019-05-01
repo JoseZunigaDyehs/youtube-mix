@@ -1,1 +1,0 @@
-export const APIURL = "https://cariola-dev.mycognitiva.io/mad/";
