@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo, useContext } from "react";
+import React, { useRef, useMemo, useContext } from "react";
 import { StoreContext } from "../../context/store/storeContext";
 import PropTypes from "prop-types";
 import YTSearch from "youtube-api-search";

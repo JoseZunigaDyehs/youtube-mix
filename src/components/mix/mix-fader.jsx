@@ -14,7 +14,7 @@ function MixFader() {
     const { mix } = state,
       style = {
         left: mix.positionFader - 10,
-        top: 0
+        bottom:  "calc(30% - 2rem)"
       };
 
     if (mix.fader) {
