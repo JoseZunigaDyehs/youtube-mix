@@ -29,9 +29,9 @@ function MixFader({ playerOne, playerTwo }) {
       faderDivEndPosition = faderDivStartPosition + 400;
       let left = e.screenX;
       if(left<faderDivStartPosition){
-        left = 0;
+        left = 10;
       }else if(left > faderDivEndPosition){
-        left = mix.total;
+        left = mix.total - 10;
       }else{
         left = left - faderDivStartPosition
       }

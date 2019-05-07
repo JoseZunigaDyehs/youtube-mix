@@ -1,13 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { StoreContext } from "../../context/store/storeContext";
 import playIcon from "../../assets/svg/001-play.svg";
 import pauseIcon from "../../assets/svg/002-music-player-pause-lines.svg";
 import stopIcon from "../../assets/svg/003-video-player-stop-button.svg";
 import searchIcon from "../../assets/svg/012-musica-searcher.svg";
-import Button from '../modules/button';
+import nextIcon from "../../assets/svg/004-skip-track-option.svg";
 
-const VideoControl = ({ player }) => {
-    const { state, actions } = useContext(StoreContext);
+import Button from '../modules/button';
+import VideoMenu from './video-menu';
+
+const VideoControl = ({ player, videoNumber }) => {
+    const { actions } = useContext(StoreContext);
     const toggleSearch = () => {
         actions.search.toggleSearch();
         const find = document.documentElement.getElementsByClassName("find")[0];
@@ -40,6 +43,14 @@ const VideoControl = ({ player }) => {
                 }
             },
             {
+                type: "CURRENT",
+                name: "NEXT",
+                icon: nextIcon,
+                function: () => {
+                    player.nextVideo()
+                }
+            },
+            {
                 type: "LOAD",
                 name: "LOAD",
                 icon: searchIcon,
@@ -53,15 +64,27 @@ const VideoControl = ({ player }) => {
             return (
                 <div key={i} className={button.name.toLowerCase() + " button"}>
                     <Button
-                        func={button.function} 
+                        func={button.function}
                         name={button.name}
                         icon={button.icon}
-                        />
+                    />
                 </div>
             );
         });
     };
-    return <div className="buttons">{fillButtons()}</div>
+
+    const content = () => {
+        return (
+            <React.Fragment>
+                <VideoMenu
+                    videoNumber={videoNumber}
+                />
+                <div className="buttons">{fillButtons()}</div>
+            </React.Fragment>
+        )
+    }
+
+    return content();
 }
 
 export default VideoControl;

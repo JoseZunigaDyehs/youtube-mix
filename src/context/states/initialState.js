@@ -1,11 +1,11 @@
 import { searchStates } from "../reducers/search";
-import { trackStates } from "../reducers/track";
 import { mixStates } from "../reducers/mix";
 import { pannelStates } from "../reducers/pannel";
+import { videoMenuStates } from "../reducers/video-menu";
 
 export const initialState = {
   search: searchStates,
-  track: trackStates,
   mix: mixStates,
-  pannel: pannelStates
+  pannel: pannelStates,
+  videoMenu: videoMenuStates
 };

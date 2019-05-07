@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { StoreContext } from "../../context/store/storeContext";
 
 import IsFetching from '../modules/isFetching';

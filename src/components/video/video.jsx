@@ -1,19 +1,20 @@
-import React, { useMemo, useContext } from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import VideoControl from './video-control';
 // import MixDuration from "./mix-duration";
 
 //Div que hace referencia al objeto padre (iframe API Youtube)
-function Video(props) {
+function Video({ videoNumber, reference, player }) {
 
   const content = () => {
-    const { videoNumber, reference, player } = props;
     return useMemo(() => {
       return (
         <div className={`mixtrack${videoNumber === 0 ? "" : " secondVideo"}`}>
-          <div ref={reference} />
+          <div className="iframe">
+            <div ref={reference} />
+          </div>
           {/* <MixDuration /> */}
-          <VideoControl player={player}/>
+          <VideoControl player={player} videoNumber={videoNumber}/>
         </div>
       )
     }, [videoNumber, reference, player]);
