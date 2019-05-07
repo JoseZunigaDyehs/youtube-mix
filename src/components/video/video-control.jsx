@@ -1,7 +1,12 @@
 import React, { useContext } from 'react';
 import { StoreContext } from "../../context/store/storeContext";
+import playIcon from "../../assets/svg/001-play.svg";
+import pauseIcon from "../../assets/svg/002-music-player-pause-lines.svg";
+import stopIcon from "../../assets/svg/003-video-player-stop-button.svg";
+import searchIcon from "../../assets/svg/012-musica-searcher.svg";
+import Button from '../modules/button';
 
-const VideoButtons = ({player}) => {
+const VideoControl = ({ player }) => {
     const { state, actions } = useContext(StoreContext);
     const toggleSearch = () => {
         actions.search.toggleSearch();
@@ -13,7 +18,7 @@ const VideoButtons = ({player}) => {
             {
                 type: "CURRENT",
                 name: "PLAY",
-                icon: "",
+                icon: playIcon,
                 function: () => {
                     player.playVideo()
                 }
@@ -21,7 +26,7 @@ const VideoButtons = ({player}) => {
             {
                 type: "CURRENT",
                 name: "PAUSE",
-                icon: "",
+                icon: pauseIcon,
                 function: () => {
                     player.pauseVideo()
                 }
@@ -29,7 +34,7 @@ const VideoButtons = ({player}) => {
             {
                 type: "CURRENT",
                 name: "STOP",
-                icon: "",
+                icon: stopIcon,
                 function: () => {
                     player.stopVideo()
                 }
@@ -37,7 +42,7 @@ const VideoButtons = ({player}) => {
             {
                 type: "LOAD",
                 name: "LOAD",
-                icon: "",
+                icon: searchIcon,
                 function: () => {
                     toggleSearch();
                 }
@@ -47,13 +52,11 @@ const VideoButtons = ({player}) => {
         return buttons.map((button, i) => {
             return (
                 <div key={i} className={button.name.toLowerCase() + " button"}>
-                    <button
-                        onClick={() => {
-                            button.function();
-                        }}
-                    >
-                        {button.name}
-                    </button>
+                    <Button
+                        func={button.function} 
+                        name={button.name}
+                        icon={button.icon}
+                        />
                 </div>
             );
         });
@@ -61,4 +64,4 @@ const VideoButtons = ({player}) => {
     return <div className="buttons">{fillButtons()}</div>
 }
 
-export default VideoButtons;
+export default VideoControl;

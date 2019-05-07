@@ -1,6 +1,6 @@
 import React, { useMemo, useContext } from "react";
 import PropTypes from "prop-types";
-import VideoButtons from './video-buttons';
+import VideoControl from './video-control';
 // import MixDuration from "./mix-duration";
 
 //Div que hace referencia al objeto padre (iframe API Youtube)
@@ -13,7 +13,7 @@ function Video(props) {
         <div className={`mixtrack${videoNumber === 0 ? "" : " secondVideo"}`}>
           <div ref={reference} />
           {/* <MixDuration /> */}
-          <VideoButtons player={player}/>
+          <VideoControl player={player}/>
         </div>
       )
     }, [videoNumber, reference, player]);
