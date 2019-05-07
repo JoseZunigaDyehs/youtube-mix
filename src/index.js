@@ -4,7 +4,7 @@ import * as serviceWorker from './serviceWorker';
 import { StoreProvider } from './context/store/storeContext'
 import "./assets/css/main.scss"
 
-import Pannel from "./components/pannel/pannel";
+import Pannel from "./components/mix/pannel";
 // import { Videos } from "./context/hooks/videos/videos";
 
 render(

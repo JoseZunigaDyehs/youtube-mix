@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { StoreContext } from "../../context/store/storeContext";
 
-const VideoButtons = (props) => {
+const VideoButtons = ({player}) => {
     const { state, actions } = useContext(StoreContext);
     const toggleSearch = () => {
         actions.search.toggleSearch();
@@ -15,7 +15,7 @@ const VideoButtons = (props) => {
                 name: "PLAY",
                 icon: "",
                 function: () => {
-                    props.actionButtonBySelected('playVideo')
+                    player.playVideo()
                 }
             },
             {
@@ -23,7 +23,7 @@ const VideoButtons = (props) => {
                 name: "PAUSE",
                 icon: "",
                 function: () => {
-                    props.actionButtonBySelected('pauseVideo')
+                    player.pauseVideo()
                 }
             },
             {
@@ -31,7 +31,7 @@ const VideoButtons = (props) => {
                 name: "STOP",
                 icon: "",
                 function: () => {
-                    props.actionButtonBySelected('stopVideo')
+                    player.stopVideo()
                 }
             },
             {

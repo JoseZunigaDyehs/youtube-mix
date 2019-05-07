@@ -1,6 +1,6 @@
 export const mixStates = {
-  positionFader: window.innerWidth / 2 - 5,
-  total: window.innerWidth,
+  positionFader: 400 / 2 + 2,
+  total: 400,
   selected: 0,
   fader: false
 };
