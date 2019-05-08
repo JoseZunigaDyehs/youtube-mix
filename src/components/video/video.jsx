@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import VideoControl from './video-control';
+
 // import MixDuration from "./mix-duration";
 
 //Div que hace referencia al objeto padre (iframe API Youtube)

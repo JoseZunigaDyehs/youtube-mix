@@ -5,7 +5,6 @@ import IsFetching from '../modules/isFetching';
 
 import MixFader from "./mix-fader";
 import PannelSearch from "../pannel/pannel-search";
-import { CONSTANTS } from "../../utilities/utilities";
 import Video from "../video/video";
 
 let player, playerTwo;
@@ -87,14 +86,6 @@ const Pannel = () => {
     event.target.setVolume(50);
   };
 
-  const setSound = sound => {
-    const { mix } = state,
-      selected = mix.selected;
-    selected === 0
-      ? player.loadVideoById(sound, 0, CONSTANTS.QUALITY)
-      : playerTwo.loadVideoById(sound, 0, CONSTANTS.QUALITY);
-    actions.search.toggleSearch();
-  };
 
   const content = () => {
     const { pannel } = state;
@@ -106,7 +97,6 @@ const Pannel = () => {
             <Video player={player} videoNumber={0} reference={r => { youtubePlayerAnchorOne = r; }} />
             <Video player={playerTwo} videoNumber={1} reference={r => { youtubePlayerAnchorTwo = r; }} />
             <MixFader playerOne={player} playerTwo={playerTwo} />
-            <PannelSearch setSound={setSound} />
           </section>
         </main>
       </React.Fragment>

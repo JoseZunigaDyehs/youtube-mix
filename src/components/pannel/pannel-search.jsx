@@ -2,28 +2,25 @@ import React, { useRef, useMemo, useContext } from "react";
 import { StoreContext } from "../../context/store/storeContext";
 import PropTypes from "prop-types";
 import YTSearch from "youtube-api-search";
+import { CONSTANTS } from "../../utilities/utilities";
 
-const PannelSearch = (props) => {
+const PannelSearch = ({ player, mixId }) => {
   const { state, actions } = useContext(StoreContext);
   const input = useRef(null);
 
-  const youtubeSearch = term => {
-    YTSearch({ key: "AIzaSyDXHdaBBkea1HeDMBlcpu5f0VWVRHg_8Ls", term }, data => {
-      actions.search.setVideos(data);
-    });
-  };
   const clickHandle = video => {
-    const {setSound} = props,
-      { id } = video;
-    setSound(id.videoId);
+    const { id } = video
+    player.loadVideoById(id, 0, CONSTANTS.QUALITY)
+    actions.search.toggleSearch(mixId)
   };
   const handledSubmit = (e) => {
     e.preventDefault();
     const value = input.current.value;
-    youtubeSearch(value);
+    YTSearch({ key: "AIzaSyDXHdaBBkea1HeDMBlcpu5f0VWVRHg_8Ls", value }, data => {
+      actions.search.setVideos(mixId,data);
+    });
   };
   const listSearch = () => {
-    // debugger
     const vid = state.search.videos.map((map, i) => {
       return (
         <span
@@ -34,37 +31,35 @@ const PannelSearch = (props) => {
         >
           {map.snippet.title}
         </span>
-      );
-    });
-
-    return <div className="list">{ vid }</div>;
-  };
+        );
+      });
+  
+    return <div className="list">{vid}</div>;
+        };
   const content = () => {
-    const { setSound } = props,
-      { search } = state,
-      isActive = search.isActive;
-    return useMemo(
-      () => (
-        <section className={`pannel-search ${isActive ? "active" : ""}`}>
-          <form
-            onSubmit={(e) => {
-              handledSubmit(e);
-            }}
-          >
-            <input className="find" type="text" ref={input} />
-          </form>
-          {listSearch()}
-        </section>
-      ),
-      [setSound, search, search.videos]
-    );
-  };
-
-  return content();
-}
-
-export default PannelSearch;
-
+    const {search} = state;
+          return useMemo(
+            () => (
+        <section className={`pannel-search active`}>
+            <form
+              onSubmit={(e) => {
+                handledSubmit(e);
+              }}
+            >
+              <input className="find" type="text" ref={input} />
+            </form>
+            {listSearch()}
+          </section>
+          ),
+          [ search, search.videos]
+        );
+      };
+    
+      return content();
+    }
+    
+    export default PannelSearch;
+    
 PannelSearch.propTypes = {
-  setSound: PropTypes.func.isRequired
-};
+            setSound: PropTypes.func.isRequired
+        };
