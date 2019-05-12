@@ -50,8 +50,8 @@ const Pannel = () => {
       videoId: "S-sJp1FfG7Q",
       width: "100%",
       height: "100%",
+      controls: 0,
       playerVars: {
-        controls: 0,
         rel: 0
       },
       events: {
@@ -63,7 +63,7 @@ const Pannel = () => {
       width: "100%",
       height: "100%",
       playerVars: {
-        controls: 0,
+        controls: 2,
         rel: 0
       },
       events: {
@@ -94,8 +94,8 @@ const Pannel = () => {
       <IsFetching fetching={pannel.isFetching} showChildren={true}/>
         <main className="pannel">
           <section className="mix">
-            <Video player={player} videoNumber={0} reference={r => { youtubePlayerAnchorOne = r; }} />
-            <Video player={playerTwo} videoNumber={1} reference={r => { youtubePlayerAnchorTwo = r; }} />
+            <Video player={player} mixId={0} reference={r => { youtubePlayerAnchorOne = r; }} />
+            <Video player={playerTwo} mixId={1} reference={r => { youtubePlayerAnchorTwo = r; }} />
             <MixFader playerOne={player} playerTwo={playerTwo} />
           </section>
         </main>

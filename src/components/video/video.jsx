@@ -5,20 +5,20 @@ import VideoControl from './video-control';
 // import MixDuration from "./mix-duration";
 
 //Div que hace referencia al objeto padre (iframe API Youtube)
-function Video({ videoNumber, reference, player }) {
+function Video({ mixId, reference, player }) {
 
   const content = () => {
     return useMemo(() => {
       return (
-        <div className={`mixtrack${videoNumber === 0 ? "" : " secondVideo"}`}>
+        <div className={`mixtrack${mixId === 0 ? "" : " secondVideo"}`}>
           <div className="iframe">
             <div ref={reference} />
           </div>
           {/* <MixDuration /> */}
-          <VideoControl player={player} videoNumber={videoNumber}/>
+          <VideoControl player={player} mixId={mixId}/>
         </div>
       )
-    }, [videoNumber, reference, player]);
+    }, [mixId, reference, player]);
 
     // );
   };
@@ -28,6 +28,6 @@ function Video({ videoNumber, reference, player }) {
 export default Video;
 
 Video.propTypes = {
-  videoNumber: PropTypes.number.isRequired,
+  mixId: PropTypes.number.isRequired,
   reference: PropTypes.any.isRequided
 };

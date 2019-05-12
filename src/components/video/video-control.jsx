@@ -12,7 +12,7 @@ import nextIcon from "../../assets/svg/004-skip-track-option.svg";
 import Button from '../modules/button';
 import VideoMenu from './video-menu';
 
-const VideoControl = ({ player, videoNumber }) => {
+const VideoControl = ({ player, mixId }) => {
     const { actions } = useContext(StoreContext);
     const toggleSearch = () => {
         actions.search.toggleSearch();
@@ -80,7 +80,7 @@ const VideoControl = ({ player, videoNumber }) => {
         return (
             <React.Fragment>
                 <VideoMenu
-                    videoNumber={videoNumber}
+                    mixId={mixId}
                 />
                 <div className="buttons">{fillButtons()}</div>
             </React.Fragment>

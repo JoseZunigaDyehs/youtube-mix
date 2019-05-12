@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
-const Button = ({ icon, func, name }) => {
+const Button = ({ icon, func, children }) => {
     const style = {
-        backgroundImage:  `url(${icon})`
+        backgroundImage: `url(${icon})`
     }
     return (
         <button
@@ -12,7 +12,7 @@ const Button = ({ icon, func, name }) => {
                 func();
             }}
         >
-            {/* {name} */}
+            {children}
         </button>
     )
 }

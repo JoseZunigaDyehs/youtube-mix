@@ -1,4 +1,4 @@
-import moment from 'moment';
+// import moment from 'moment';
 
 // export function dataURIToBlob(dataURI) {
 //   const binStr = atob(dataURI.split(',')[1]);
@@ -17,11 +17,11 @@ import moment from 'moment';
 //   });
 // }
 
-export function isValidToken(date){
-  if(!date){ return true };
-  const diff = moment.duration(moment().diff(moment(date)));
-  return diff.seconds() <= 300;
-}
+// export function isValidToken(date){
+//   if(!date){ return true };
+//   const diff = moment.duration(moment().diff(moment(date)));
+//   return diff.seconds() <= 300;
+// }
 
 export function removeSessionStorage(){
   sessionStorage.removeItem('loggIn');
