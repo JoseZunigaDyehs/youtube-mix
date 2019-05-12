@@ -8,9 +8,8 @@ import menuCancel from "../../assets/svg/013-canceL.svg";
 
 
 const VideoMenu = ({ player, mixId }) => {
-    const { state, actions } = useContext(StoreContext);
-    const [open, setOpen] = useState(true);
-    const [choice, setChoice] = useState('search');
+    const [open, setOpen] = useState(false);
+    const [choice, setChoice] = useState('');
 
     const toggleOpen = () => {
         setOpen(!open)

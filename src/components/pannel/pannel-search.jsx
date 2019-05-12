@@ -1,8 +1,8 @@
 import React, { useRef, useMemo, useContext, useState, useEffect } from "react";
 import { StoreContext } from "../../context/store/storeContext";
 import PropTypes from "prop-types";
-import YTSearch from "youtube-api-search";
 import { CONSTANTS } from "../../utilities/utilities";
+import { searchYTAPI } from '../../api'
 
 const PannelSearch = ({ player, mixId }) => {
   const [videos, setVideos] = useState([])
@@ -10,25 +10,22 @@ const PannelSearch = ({ player, mixId }) => {
   const input = useRef(null);
 
   useEffect(() => {
-    // debugger
     const { mixById } = state.vj
     const mix = mixById[mixId]
     const videos = mix.searchs
     setVideos(videos)
+    input.current.focus()
   }, [videos])
 
   const clickHandle = video => {
-    debugger
     const { id } = video
     player.loadVideoById(id, 0, CONSTANTS.QUALITY)
   };
-  const handledSubmit = (e) => {
+  const handledSubmit = async (e) => {
     e.preventDefault();
-    debugger
     const value = input.current.value;
-    YTSearch({ key: "AIzaSyDXHdaBBkea1HeDMBlcpu5f0VWVRHg_8Ls", value }, data => {
-      actions.vj.searchYT(mixId, data);
-    });
+    const videos = await searchYTAPI(value)
+    actions.vj.searchYT(mixId,videos)
   };
   const listSearch = () => {
     const vid = state.vj.mixById[mixId].searchs.map((map, i) => {

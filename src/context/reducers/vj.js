@@ -1,4 +1,4 @@
-export const vj = {
+export const vjStates = {
     mix: [0, 1],
     mixById: {
         0: {

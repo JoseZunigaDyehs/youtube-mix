@@ -53,14 +53,6 @@ const VideoControl = ({ player, mixId }) => {
                     player.nextVideo()
                 }
             },
-            {
-                type: "LOAD",
-                name: "LOAD",
-                icon: searchIcon,
-                function: () => {
-                    toggleSearch();
-                }
-            }
         ];
 
         return buttons.map((button, i) => {
@@ -80,6 +72,7 @@ const VideoControl = ({ player, mixId }) => {
         return (
             <React.Fragment>
                 <VideoMenu
+                    player={player}
                     mixId={mixId}
                 />
                 <div className="buttons">{fillButtons()}</div>

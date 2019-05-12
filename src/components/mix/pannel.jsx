@@ -51,9 +51,7 @@ const Pannel = () => {
       width: "100%",
       height: "100%",
       controls: 0,
-      playerVars: {
-        rel: 0
-      },
+      rel: 0,
       events: {
         onReady: onReadyYoutube
       }
@@ -62,10 +60,8 @@ const Pannel = () => {
       videoId: "zzkf4x1grXY",
       width: "100%",
       height: "100%",
-      playerVars: {
-        controls: 2,
-        rel: 0
-      },
+      controls: 0,
+      rel: 0,
       events: {
         onReady: onReadyYoutube
       }
