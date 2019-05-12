@@ -9,8 +9,5 @@ export const mixActions = props => {
     toggleFader: data => {
       props.dispatch({ type: "TOGGLE_FADER", data });
     },
-    setSelected: data => {
-      props.dispatch({ type: "SET_SELECTED_TRACK", data });
-    },
   };
 };
