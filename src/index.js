@@ -3,14 +3,12 @@ import { render } from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { StoreProvider } from './context/store/storeContext'
 import "./assets/css/main.scss"
-
-import Pannel from "./components/mix/pannel";
-// import { Videos } from "./context/hooks/videos/videos";
+import { Mix } from './components/mix/index.jsx'
 
 render(
   <StoreProvider>
     {/* <Videos> */}
-      <Pannel/>
+      <Mix/>
     {/* </Videos> */}
   </StoreProvider>
   ,

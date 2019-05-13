@@ -4,8 +4,7 @@ import { StoreContext } from "../../context/store/storeContext";
 import IsFetching from '../modules/isFetching';
 
 import MixFader from "./mix-fader";
-import PannelSearch from "../pannel/pannel-search";
-import Video from "../video/video";
+import Video from "./video";
 
 let player, playerTwo;
 
@@ -22,7 +21,7 @@ let player, playerTwo;
  * TODO: Pasar todas las funcionalidades a los controles
  */
 
-const Pannel = () => {
+export const Mix = () => {
 
   const { state, actions } = useContext(StoreContext);
   let youtubePlayerAnchorOne = useRef(null);
@@ -48,20 +47,22 @@ const Pannel = () => {
   const loadVideos = async () => {
     const video1 = {
       videoId: "S-sJp1FfG7Q",
-      width: "100%",
-      height: "100%",
+      playerVars: {
+        controls: 0,
+        rel: 0,
+      },
       controls: 0,
-      rel: 0,
+      showInfo:0,
       events: {
         onReady: onReadyYoutube
       }
     }
     const video2 = {
       videoId: "zzkf4x1grXY",
-      width: "100%",
-      height: "100%",
-      controls: 0,
-      rel: 0,
+      playerVars: {
+        controls: 0,
+      },
+      showInfo:0,
       events: {
         onReady: onReadyYoutube
       }
@@ -69,10 +70,10 @@ const Pannel = () => {
     try {
       player = await new window.YT.Player(youtubePlayerAnchorOne, video1);
       playerTwo = await new window.YT.Player(youtubePlayerAnchorTwo, video2);
-      Promise.all([player, playerTwo]).then(()=>{
-          actions.pannel.loadVideosEnd()
+      Promise.all([player, playerTwo]).then(() => {
+        actions.pannel.loadVideosEnd()
       });
-      
+
     } catch (error) {
       console.log(error)
     }
@@ -80,6 +81,9 @@ const Pannel = () => {
 
   const onReadyYoutube = event => {
     event.target.setVolume(50);
+    event.target.hideVideoInfo();
+    //SETEAR DURATION
+    debugger
   };
 
 
@@ -87,9 +91,9 @@ const Pannel = () => {
     const { pannel } = state;
     return (
       <React.Fragment>
-      <IsFetching fetching={pannel.isFetching} showChildren={true}/>
-        <main className="pannel">
-          <section className="mix">
+        <IsFetching fetching={pannel.isFetching} showChildren={true} />
+        <main className="mix">
+          <section className="mix-content">
             <Video player={player} mixId={0} reference={r => { youtubePlayerAnchorOne = r; }} />
             <Video player={playerTwo} mixId={1} reference={r => { youtubePlayerAnchorTwo = r; }} />
             <MixFader playerOne={player} playerTwo={playerTwo} />
@@ -100,4 +104,3 @@ const Pannel = () => {
   };
   return content();
 }
-export default Pannel;

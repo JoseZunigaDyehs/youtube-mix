@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { CONSTANTS } from "../../utilities/utilities";
 import { searchYTAPI } from '../../api'
 
-const PannelSearch = ({ player, mixId }) => {
+const VideoSearch = ({ player, mixId }) => {
   const [videos, setVideos] = useState([])
   const { state, actions } = useContext(StoreContext);
   const input = useRef(null);
@@ -67,8 +67,8 @@ const PannelSearch = ({ player, mixId }) => {
   return content();
 }
 
-export default PannelSearch;
+export default VideoSearch;
 
-PannelSearch.propTypes = {
+VideoSearch.propTypes = {
   setSound: PropTypes.func.isRequired
 };

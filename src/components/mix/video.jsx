@@ -1,6 +1,7 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect } from "react";
 import PropTypes from "prop-types";
 import VideoControl from './video-control';
+import {VideoDuration} from './video-duration';
 
 // import MixDuration from "./mix-duration";
 
@@ -8,13 +9,15 @@ import VideoControl from './video-control';
 function Video({ mixId, reference, player }) {
 
   const content = () => {
+    
     return useMemo(() => {
       return (
-        <div className={`mixtrack${mixId === 0 ? "" : " secondVideo"}`}>
+        <div className={`mix mix-track${mixId === 0 ? "" : " secondVideo"}`}>
           <div className="iframe">
             <div ref={reference} />
           </div>
           {/* <MixDuration /> */}
+          <VideoDuration></VideoDuration>
           <VideoControl player={player} mixId={mixId}/>
         </div>
       )

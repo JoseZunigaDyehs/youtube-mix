@@ -1,12 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { StoreContext } from "../../context/store/storeContext";
 
-
-
 import playIcon from "../../assets/svg/001-play.svg";
 import pauseIcon from "../../assets/svg/002-music-player-pause-lines.svg";
 import stopIcon from "../../assets/svg/003-video-player-stop-button.svg";
-import searchIcon from "../../assets/svg/012-musica-searcher.svg";
 import nextIcon from "../../assets/svg/004-skip-track-option.svg";
 
 import Button from '../modules/button';
@@ -69,13 +66,14 @@ const VideoControl = ({ player, mixId }) => {
     };
 
     const content = () => {
+        const style = mixId===0?{paddingRight: 200}:{paddingLeft:200};
         return (
             <React.Fragment>
                 <VideoMenu
                     player={player}
                     mixId={mixId}
                 />
-                <div className="buttons">{fillButtons()}</div>
+                <div className="buttons" style={style}>{fillButtons()}</div>
             </React.Fragment>
         )
     }

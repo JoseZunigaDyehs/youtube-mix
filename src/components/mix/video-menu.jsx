@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { StoreContext } from "../../context/store/storeContext"
-import PannelSearch from "../pannel/pannel-search";
+import VideoSearch from "./video-search";
 import Button from "../modules/button";
 
 import menuIcon from "../../assets/svg/010-lines-menu2.svg";
@@ -22,7 +22,7 @@ const VideoMenu = ({ player, mixId }) => {
             switch (choice) {
                 case 'search':
                     content.push(
-                        <PannelSearch mixId={mixId} player={player}></PannelSearch>
+                        <VideoSearch mixId={mixId} player={player}></VideoSearch>
                     )
                     break;
                 case 'lists':
