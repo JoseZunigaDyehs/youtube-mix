@@ -9,7 +9,11 @@ const StoreProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState)
 	const actions = useActions(state, dispatch)
 
-	useEffect(() => console.log({ newState: state }), [state])
+	useEffect(() => {
+		console.log({ newState: state })
+		window.localStorage.setItem("ytMix",JSON.stringify(state))
+	}
+	, [state])
   
 	return (
 		<StoreContext.Provider value={{ state, dispatch, actions }}>
