@@ -1,23 +1,28 @@
-import React, {useState,useEffect} from 'react'
+import React, { useState, useEffect } from "react"
 
-export const VideoDuration = ({mixId,player,advanceVideo, duration}) => {
-    const [ advance, setAdvance ] = useState(0);
-    useEffect(()=>{
-        debugger
-        const realAdvance = (duration / 100) * advance
-        setAdvance(realAdvance);
-        getSeconds();
-    },advanceVideo,advance)
+const VideoDuration = ({ mixId, player, duration, start }) => {
+	const [advance, setAdvance] = useState(0)
+	useEffect(() => {
+		if (start !== 0) {
+			debugger
+			const realAdvance = (duration / 100) * advance
+			setAdvance(realAdvance)
 
-    const getSeconds = () => {
-        // setInterval(() => {
-            setAdvance(advance + 1)
-        // }, 1000);
-    }
+		}
+		//getSeconds();
+	}, [duration, start])
 
-    return (
-        <div className="duration" style={{width:advance+'%'}}>
-            <div className="advance"></div>
-        </div>
-    )
+	const getSeconds = () => {
+		// setInterval(() => {
+		setAdvance(advance + 1)
+		// }, 1000);
+	}
+
+	return (
+		<div className="duration">
+			<div className="advance" style={{ width: advance + "%" }}></div>
+		</div>
+	)
 }
+
+export default VideoDuration

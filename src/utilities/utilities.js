@@ -24,12 +24,12 @@
 // }
 
 export function removeSessionStorage(){
-  sessionStorage.removeItem('loggIn');
-  sessionStorage.removeItem('refresh_token');
-  sessionStorage.removeItem('token');
-  sessionStorage.removeItem('timer');
+	sessionStorage.removeItem("loggIn")
+	sessionStorage.removeItem("refresh_token")
+	sessionStorage.removeItem("token")
+	sessionStorage.removeItem("timer")
 }
 
 export const CONSTANTS = {
-  QUALITY: 'media'
-};
+	QUALITY: "media"
+}
