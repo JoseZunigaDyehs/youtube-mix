@@ -42,7 +42,7 @@ export const vjReducer = (state, action) => {
 	switch (action.type) {
 	case "SEARCH_END":
 		debugger
-		const { mixId, videos } = action.data
+		const { data : { mixId, videos } } = action
 		const mix = state.mixById[mixId]
 		mix.searchs = videos
 		return { ...state, mix }

@@ -3,6 +3,7 @@ import { StoreContext } from "../../context/store/storeContext"
 import PropTypes from "prop-types"
 import { CONSTANTS } from "../../utilities/utilities"
 import { searchYTAPI } from "../../api"
+import VideoSearchVideo from "./video-search-video"
 
 const VideoSearch = ({ player, mixId }) => {
 	const [videos, setVideos] = useState([])
@@ -25,20 +26,18 @@ const VideoSearch = ({ player, mixId }) => {
 		e.preventDefault()
 		const value = input.current.value
 		const videos = await searchYTAPI(value)
-		debugger
 		actions.vj.searchYT(mixId,videos)
 	}
 	const listSearch = () => {
 		const vid = state.vj.mixById[mixId].searchs.map((map, i) => {
 			return (
-				<span
-					key={map.id.videoId}
+				<VideoSearchVideo key={map.id.videoId}
+					img={map.snippet.thumbnails.default.url}
+					title={map.snippet.title}
 					onClick={() => {
 						clickHandle(map)
-					}}
-				>
-					{map.snippet.title}
-				</span>
+					}}	
+				></VideoSearchVideo>
 			)
 		})
 

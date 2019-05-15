@@ -168,6 +168,10 @@ button[disabled] {
         .mix-track {
             position: relative;
 
+            &.secondVideo{
+                background: #131313;
+            }
+
             .iframe {
                 height: 70vh;
                 width: 100%;
@@ -364,15 +368,63 @@ button[disabled] {
 
         .list {
             display: flex;
-            flex-direction: column;
-
-            span {
-                cursor: pointer;
-                transition: all .3s ease-in-out;
-                color: #fff;
-
-                &:hover {
-                    color: #79f4ff;
+            flex-direction: row;
+            flex-wrap: wrap;
+            height: 100%;
+            .video {
+                width: 33.3%;
+                position: relative;
+                display: flex;
+                height: 25%;
+                justify-content: center;
+                background: black;
+                align-items: center;
+                overflow: hidden;
+                img {
+                    position: absolute;
+                }
+                p{
+                    position: absolute;
+                    color: rgba(255,255,255,.78);
+                    font-weight: 300;
+                    font-size: 1.2rem;
+                    padding: .5rem;
+                    top: 0;
+                    height: 100%;
+                    width: 100%;
+                }
+                .buttons {
+                    display: flex;
+                    height: 100%;
+                    width: 100%;
+                    justify-content: space-around;
+                    align-items: flex-end;
+                    margin: 0;
+                    padding-bottom: .5rem;
+                    button{
+                        position: initial;
+                        border-radius: .5rem;
+                        padding: 1.2rem 2rem;
+                        opacity: 0;
+                        color: #fff;
+                        font-size: 1.1rem;
+                        background-repeat: no-repeat;
+                        background-size: 1.2rem;
+                        background-position: center;
+                    }
+                }
+                &:hover{
+                    cursor: pointer;
+                    p{
+                        color: #fff;
+                        background: rgba($color-primary,.8);
+                    }
+                    .buttons{
+                        button{
+                            transition: opacity .3s ease-in-out;
+                            opacity: 1;
+                        }
+                    }
                 }
             }
         }

@@ -1,15 +1,18 @@
-import axios from 'axios';
+import axios from "axios"
 
-const API_KEY = 'AIzaSyDXHdaBBkea1HeDMBlcpu5f0VWVRHg_8Ls'
+const API_KEY = "AIzaSyDXHdaBBkea1HeDMBlcpu5f0VWVRHg_8Ls"
 
 export const searchYTAPI = async ( search ) => {
 
-    try {
-        const res = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&forDeveloper=true&key=${API_KEY}&maxResults=15&q=${search}`);
-        return res.data.items;
-    }
-    catch (err) {
-        return err;
-    }
+	try {
+		const res = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&key=${API_KEY}&maxResults=12&q=${search}`)
+        
+		debugger
+		return res.data.items
+	}
+	catch (err) {
+		debugger
+		return err
+	}
 }
 

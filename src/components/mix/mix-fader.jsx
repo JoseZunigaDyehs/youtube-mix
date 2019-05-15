@@ -1,59 +1,59 @@
-import React, { useMemo, useContext, useRef } from "react"
-import { StoreContext } from "../../context/store/storeContext"
+import React, { useMemo, useRef, useState } from "react"
+
+//TODO: CORREGIR FADER
 
 function MixFader({ playerOne, playerTwo }) {
-	const { state, actions } = useContext(StoreContext)
+
+	const [positionFader, setPositionFader ] =useState((400 / 2 + 2) - 10)
+	const [total, setTotal] = useState(400)
+	const [fader, setFader] = useState(false)
 	const faderDiv = useRef(null)
 
 	const toggleOver = () => {
-		const { mix } = state
-		actions.mix.toggleFader(!mix.fader)
+		setFader(!fader)
 	}
 
 	const setFaderMix = position => {
-		const { total } = state.mix,
-			porcSecondTrack = (position * 100) / total,
+		const porcSecondTrack = (position -10 * 100) / total,
 			porcFirstTrack = 100 - porcSecondTrack
 		playerOne.setVolume(porcFirstTrack)
 		playerTwo.setVolume(porcSecondTrack)
 	}
 
 	const onPointerHandle = (e) => {
-		const { mix } = state
-		console.log(e.screenX)
-		if (!mix.fader) {
+		if (!fader) {
 			return
 		} else {
 			//Se compara con el right del div fader
 			const faderDivStartPosition = window.outerWidth / 2 - 200,
-				faderDivEndPosition = faderDivStartPosition + 400
+				faderDivEndPosition = faderDivStartPosition + total,
+				faderDivMiddlePosition = faderDivEndPosition / 20
 			let left = e.screenX
-			if(left<faderDivStartPosition){
-				left = 10
-			}else if(left > faderDivEndPosition){
-				left = mix.total - 10
+			if(left - 10 <= faderDivStartPosition){
+				left = 0
+			}else if(left >= faderDivEndPosition - 10 ){
+				left = total - 20
 			}else{
 				left = left - faderDivStartPosition
 			}
-			actions.mix.setPositionFaderMix(left)
+			setPositionFader(left)
 			setFaderMix(left)
 		}
 	}
 
 	const content = () => {
-		const { mix } = state,
-			style = {
-				left: mix.positionFader - 10
-			}
+		const style = {
+			left: positionFader
+		}
 
-		if (mix.fader) {
+		if (fader) {
 			style.cursor = "col-resize"
 		} else {
 			style.cursor = "pointer"
 		}
 
 		return useMemo(() => <div
-			className={mix.fader ? "mixfader over" : "mixfader"}
+			className={fader ? "mixfader over" : "mixfader"}
 			onPointerMove={(e) => {
 				onPointerHandle(e)
 			}}
@@ -62,7 +62,7 @@ function MixFader({ playerOne, playerTwo }) {
 			<div ref={faderDiv} className="fader" style={style} onClick={() => {
 				toggleOver()
 			}}></div>
-		</div>, [mix])
+		</div>, [fader, positionFader, total])
 	}
 
 	return content()

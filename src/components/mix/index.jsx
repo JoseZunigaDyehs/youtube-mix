@@ -56,7 +56,7 @@ export const Mix = () => {
 
 	const loadVideos = async () => {
 		const video1 = {
-			videoId: "S-sJp1FfG7Q",
+			videoId: "LxtppUZthug",
 			playerVars: {
 				controls: 0,
 				rel: 0,
@@ -69,7 +69,7 @@ export const Mix = () => {
 			}
 		}
 		const video2 = {
-			videoId: "zzkf4x1grXY",
+			videoId: "1gG1gqE05Gk",
 			playerVars: {
 				controls: 0,
 			},
@@ -121,7 +121,6 @@ export const Mix = () => {
 
 	const content = () => {
 		const { pannel } = state
-		debugger
 		return (
 			<React.Fragment>
 				<IsFetching fetching={pannel.isFetching} showChildren={true} />
