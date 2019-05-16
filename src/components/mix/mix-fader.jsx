@@ -14,8 +14,9 @@ function MixFader({ playerOne, playerTwo }) {
 	}
 
 	const setFaderMix = position => {
-		const porcSecondTrack = (position -10 * 100) / total,
+		const porcSecondTrack = ( (position ) * 100) / total,
 			porcFirstTrack = 100 - porcSecondTrack
+		debugger
 		playerOne.setVolume(porcFirstTrack)
 		playerTwo.setVolume(porcSecondTrack)
 	}
@@ -24,20 +25,25 @@ function MixFader({ playerOne, playerTwo }) {
 		if (!fader) {
 			return
 		} else {
+			debugger
 			//Se compara con el right del div fader
 			const faderDivStartPosition = window.outerWidth / 2 - 200,
 				faderDivEndPosition = faderDivStartPosition + total,
 				faderDivMiddlePosition = faderDivEndPosition / 20
 			let left = e.screenX
-			if(left - 10 <= faderDivStartPosition){
+			let leftFader
+			if(left - 20 <= faderDivStartPosition){
 				left = 0
+				leftFader = 0
 			}else if(left >= faderDivEndPosition - 10 ){
 				left = total - 20
+				 leftFader = total
 			}else{
 				left = left - faderDivStartPosition
+				leftFader = left - 20 >= total ? total : left
 			}
 			setPositionFader(left)
-			setFaderMix(left)
+			setFaderMix(leftFader)
 		}
 	}
 
