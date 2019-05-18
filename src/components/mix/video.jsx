@@ -16,7 +16,6 @@ const Video = ({ mixId, reference, player, duration, start }) => {
 					<div className="iframe">
 						<div ref={reference} />
 					</div>
-					{/* <MixDuration /> */}
 					<VideoDuration mixId={mixId} player={player} duration={duration} start={start}/>
 					<VideoControl player={player} mixId={mixId}/>
 				</div>

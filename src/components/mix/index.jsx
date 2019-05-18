@@ -5,6 +5,7 @@ import IsFetching from "../modules/isFetching"
 
 import MixFader from "./mix-fader"
 import Video from "./video"
+import MainControl from "./main-control";
 
 let player, playerTwo
 
@@ -129,6 +130,7 @@ export const Mix = () => {
 						<Video player={player} mixId={0} reference={r => { youtubePlayerAnchorOne = r }} duration={myPlayer.duration} start={myPlayer.start}/>
 						<Video player={playerTwo} mixId={1} reference={r => { youtubePlayerAnchorTwo = r }} duration={myPlayerTwo.duration} start={myPlayerTwo.start}/>
 						<MixFader playerOne={player} playerTwo={playerTwo} />
+						<MainControl></MainControl>
 					</section>
 				</main>
 			</React.Fragment>

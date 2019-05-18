@@ -1,21 +1,20 @@
 // import moment from 'moment';
+const encode = async ( s ) => {
+	var out = [];
+	for ( var i = 0; i < s.length; i++ ) {
+		out[i] = s.charCodeAt(i);
+	}
+	return new Uint8Array( out );
+}
 
-// export function dataURIToBlob(dataURI) {
-//   const binStr = atob(dataURI.split(',')[1]);
-
-//   let len = binStr.length,
-//       arr = new Uint8Array(len);
-
-//   const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
-
-//   for (var i = 0; i < len; i++) {
-//     arr[i] = binStr.charCodeAt(i);
-//   }
-
-//   return new Blob([arr], {
-//     type: mimeString
-//   });
-// }
+export const blob = async (obj) => {
+		const str = JSON.stringify(obj);
+		var data = await encode( str );
+		var blob = new Blob( [ data ], {
+			type: 'application/octet-stream'
+		});
+		return URL.createObjectURL( blob );
+}
 
 // export function isValidToken(date){
 //   if(!date){ return true };

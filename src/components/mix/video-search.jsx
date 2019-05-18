@@ -18,7 +18,7 @@ const VideoSearch = ({ player, mixId }) => {
 		input.current.focus()
 	}, [videos,player, mixId])
 
-	const clickHandle = video => {
+	const clickHandlePlay = video => {
 		const { id } = video
 		player.loadVideoById(id, 0, CONSTANTS.QUALITY)
 	}
@@ -28,20 +28,31 @@ const VideoSearch = ({ player, mixId }) => {
 		const videos = await searchYTAPI(value)
 		actions.vj.searchYT(mixId,videos)
 	}
+	const clickHandleAdd = video => {
+		actions.vj.addVideoToList(0,video)
+	}
 	const listSearch = () => {
-		const vid = state.vj.mixById[mixId].searchs.map((map, i) => {
+		const {searchs} = state.vj.mixById[mixId]
+		const style = searchs.length > 12 ? {
+			overflowY: "scroll"
+		} : {}
+		const vid = searchs.map((map, i) => {
 			return (
 				<VideoSearchVideo key={map.id.videoId}
 					img={map.snippet.thumbnails.default.url}
 					title={map.snippet.title}
-					onClick={() => {
-						clickHandle(map)
-					}}	
+					onClickPlay={() => {
+						clickHandlePlay(map)
+					}}
+					onClickAdd={()=>{
+						clickHandleAdd(map)
+					}}
 				></VideoSearchVideo>
 			)
 		})
+		debugger
 
-		return <div className="list">{vid}</div>
+		return <div className="list" style={style}>{vid}</div>
 	}
 	const content = () => {
 		const { mixById } = state.vj

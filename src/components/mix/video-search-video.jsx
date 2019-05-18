@@ -1,27 +1,26 @@
 import React, { useEffect, useMemo } from "react"
 import Button from "../modules/button"
 import playIcon from "../../assets/svg/001-play.svg"
-import addIcon from "../../assets/svg/014-add-song.svg"
+import favoriteIcon from "../../assets/svg/008-loving-heart-shape.svg"
 
-const VideoSearchVideo = ({title, img, onClick}) => {
+const VideoSearchVideo = ({title, img, onClickPlay, onClickAdd}) => {
 
 	const content = () => {
 		return useMemo(()=>{
-			debugger
 			return (
 				<div className="video">
 					<img src={img} alt="" srcset=""/>
 					<p>{title}</p>
 					<div className="buttons">
 						<Button
-							func={onClick}
+							func={onClickPlay}
 							name={""}
 							icon={playIcon}
 						/>
 						<Button
-							func={onClick}
+							func={onClickAdd}
 							name={""}
-							icon={addIcon}
+							icon={favoriteIcon}
 						/>
 					</div>
 				</div>

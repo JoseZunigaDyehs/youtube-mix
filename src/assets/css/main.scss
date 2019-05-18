@@ -19,7 +19,11 @@ html {
 body {
     font: 300 1.4rem "Montserrat";
     text-rendering: optimizeLegibility;
-    color: $color-text;
+    color: var(--color-text);
+    color: white;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: .2rem;
 }
 
 b,
@@ -34,7 +38,7 @@ strong {
 html,
 body {
     height: 100%;
-    background: $color-primary;
+    background: var(--color-primary);
 }
 
 .heightfull {
@@ -70,6 +74,24 @@ button[disabled] {
     cursor: not-allowed;
 }
 
+a{
+    &.button{
+        padding: 2rem 3rem;
+        margin-top: 1rem;
+        border-radius: .5rem;
+        border: none;
+        cursor: pointer;
+        background: #291743;
+        background: var(--color-primary);
+        color: #fff;
+        color: var(--color-text);
+        letter-spacing: 0.1rem;
+        background-repeat: no-repeat;
+        background-size: 1.6rem;
+        background-position: center;
+    }
+}
+
 .hide {
     display: none;
 }
@@ -91,7 +113,7 @@ button[disabled] {
     right: 0;
     bottom: 0;
     z-index: 99999;
-    background: $color-primary;
+    background: var(--color-primary);
 
     .loader {
         border-radius: 50%;
@@ -102,7 +124,7 @@ button[disabled] {
         margin: 0 auto;
         text-indent: -9999em;
         border: 0.2rem solid rgba(0, 0, 0, 0.1);
-        border-left: 0.2rem solid #fff;
+        border-left: 0.2rem solid var(--color-text);
         transform: translateZ(0);
         animation: spinner 0.6s infinite linear;
     }
@@ -118,38 +140,6 @@ button[disabled] {
     }
 }
 
-@for $i from 1 through $grid-columns {
-    $newcol: (100% / $grid-columns) * $i;
-
-    .col-#{$i} {
-        position: relative;
-        width: 100%;
-        min-height: 0.1rem;
-        padding-right: ($gap / 2);
-        padding-left: ($gap / 2);
-        -ms-flex: 0 0 #{$newcol};
-        flex: 0 0 #{$newcol};
-        max-width: #{$newcol};
-
-        @for $j from 1 through $grid-columns {
-            $margin: (100% / $grid-columns) * $j;
-
-            &.col-offset-#{$j} {
-                margin-left: #{$margin};
-            }
-        }
-    }
-}
-
-@for $i from 1 through 6 {
-
-    h#{$i},
-    .h#{$i} {
-        font: 600 ($gap - ($i * 0.1)) "Montserrat";
-        margin: $gap 0;
-    }
-}
-
 //MIXER
 .mix {
     width: 100%;
@@ -160,17 +150,12 @@ button[disabled] {
 
     .mix-content {
         width: 100%;
-        background: $color-primary-light;
+        background-color: var(--color-primary-light);
         height: 100vh;
         display: flex;
-        background: $color-bkg;
-
+        background: var(--color-bkg);
         .mix-track {
             position: relative;
-
-            &.secondVideo{
-                background: #131313;
-            }
 
             .iframe {
                 height: 70vh;
@@ -194,7 +179,7 @@ button[disabled] {
             &.play {
                 &::before {
                     content: "";
-                    background: $color-primary;
+                    background: var(--color-primary);
                     width: 100%;
                     height: 100%;
                     position: relative;
@@ -209,7 +194,7 @@ button[disabled] {
                 right: 0;
                 width: 5rem;
                 height: 5rem;
-                background: rgba($color-primary, 0.85);
+                background: rgba(var(--rgba-primary), 0.85);
                 border-radius: 0 0 0 100%;
 
                 &.open {
@@ -225,7 +210,7 @@ button[disabled] {
                     padding: 3rem 2rem 2rem 3rem;
                     border: none; // border-radius: 1rem;
                     cursor: pointer;
-                    background: $color-primary;
+                    background: var(--color-primary);
                     letter-spacing: 0.1rem;
                     background-repeat: no-repeat;
                     background-size: 1.4rem;
@@ -234,7 +219,7 @@ button[disabled] {
                     border-radius: 0% 0% 0% 100%;
                     &:hover{
                         transition: all .3s ease-in-out;
-                        background-color: $color-primary-light;
+                        background-color: var(--color-primary-light);
                     }
                 }
 
@@ -255,10 +240,10 @@ button[disabled] {
                             text-transform: uppercase;
                             font-weight: 600;
                             letter-spacing: 0.2rem;
-                            color: #fff;
+                            color: var(--color-text);
                             &.active,
                             &:hover {
-                                color: yellow;
+                                color: var(--color-contrast);
                             }
                         }
                     }
@@ -272,9 +257,9 @@ button[disabled] {
                 left: 0;
                 width: 100%;
                 height: 2rem;
-                background: $color-primary;
+                background: var(--color-primary);
                 .advance{
-                    background: rgba(#fff, 0.3);
+                    background: rgba(var(--rgba-text), 0.3);
                     width: 20%;
                     height: 100%;
                 }
@@ -296,15 +281,15 @@ button[disabled] {
                     border-radius: .5rem;
                     border: none; // border-radius: 1rem;
                     cursor: pointer;
-                    background: $color-primary;
-                    color: white;
+                    background: var(--color-primary);
+                    color: var(--color-text);
                     letter-spacing: 0.1rem;
                     background-repeat: no-repeat;
                     background-size: 1.6rem;
                     background-position: center;
                     &:hover{
                         transition: all .3s ease-in-out;
-                        background-color: $color-primary-light;
+                        background-color: var(--color-primary-light);
                     }
                 }
                 &:last-child{
@@ -319,14 +304,14 @@ button[disabled] {
             height: 40px;
             top: calc(70vh + 4rem);
             left: calc(50% - 200px);
-            background: $color-primary-dark;
+            background: var(--color-primary-dark);
             border-radius: 5px;
             overflow: hidden;
 
             .fader {
                 position: relative;
                 height: 40px;
-                background: #8567ac;
+                background: var(--color-primary-extra-light);
                 width: 20px;
                 left: calc(50% - 10px);
                 cursor: pointer;
@@ -334,9 +319,15 @@ button[disabled] {
             }
 
             &.over {
-                background: $color-primary-light;
+                background: var(--color-primary-light);
             }
         }
+
+        .main-control{
+            position: absolute;
+            
+        }
+
     }
 
     .pannel-search {
@@ -347,45 +338,35 @@ button[disabled] {
         position: absolute;
         width: 80%;
         height: 100%;
-        background: rgba($color-primary, 0.8);
+        background: rgba(var(--rgba-primary), 0.8);
         padding: 0 2rem 0rem 2rem;
         transition: all .3s ease;
-
-        &.active {
-            left: 20%;
-        }
-
-        input {
-            border: none;
-            padding: 1.3rem;
-            background: transparent;
-            color: #fff;
-            border-bottom: 1px solid #fff;
-            width: calc(100% - 2rem);
-            text-align: center;
-            letter-spacing: 0.2rem;
-        }
+        animation: in .3s ease-in;
 
         .list {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             height: 100%;
+            overflow: hidden;
             .video {
                 width: 33.3%;
                 position: relative;
                 display: flex;
                 height: 25%;
                 justify-content: center;
-                background: black;
                 align-items: center;
                 overflow: hidden;
+                background: black;
                 img {
                     position: absolute;
+                    opacity: .2;
+                    width: 100%;
                 }
                 p{
+                    text-transform: initial;
+                    letter-spacing: 0;
                     position: absolute;
-                    color: rgba(255,255,255,.78);
                     font-weight: 300;
                     font-size: 1.2rem;
                     padding: .5rem;
@@ -406,7 +387,7 @@ button[disabled] {
                         border-radius: .5rem;
                         padding: 1.2rem 2rem;
                         opacity: 0;
-                        color: #fff;
+                        color: var(--color-text);
                         font-size: 1.1rem;
                         background-repeat: no-repeat;
                         background-size: 1.2rem;
@@ -415,10 +396,17 @@ button[disabled] {
                 }
                 &:hover{
                     cursor: pointer;
-                    p{
-                        color: #fff;
-                        background: rgba($color-primary,.8);
+                    transition: all .3s ease-in-out;
+                    img{
+                        opacity: 1;
+                        transition: all .3s ease-in-out;
                     }
+                    p{
+                        transition: all .3s ease-in-out;
+                        opacity: 0;
+                        color: var(--color-text);
+                    }
+
                     .buttons{
                         button{
                             transition: opacity .3s ease-in-out;
@@ -427,6 +415,45 @@ button[disabled] {
                     }
                 }
             }
+        }
+
+        &.lists{
+            padding: 0;
+            .list{
+                justify-content: center;
+                align-items: center;
+                p {
+                    cursor: pointer;
+                    &:hover{
+                        transition: all .3s ease-in-out;
+                        color: var(--color-contrast);
+                    }
+                }
+            }
+        }
+
+        &.open{
+            animation: in .3s linear;
+            h3{
+                animation: in .3s linear;
+                text-align: center;
+                margin: 1.3rem;
+            }
+        }
+
+        &.active {
+            left: 20%;
+        }
+
+        input {
+            border: none;
+            padding: 1.3rem;
+            background: transparent;
+            color: var(--color-text);
+            border-bottom: 1px solid var(--color-text);
+            width: calc(100% - 2rem);
+            text-align: center;
+            letter-spacing: 0.2rem;
         }
     }
 }

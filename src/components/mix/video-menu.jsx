@@ -5,6 +5,7 @@ import Button from "../modules/button"
 
 import menuIcon from "../../assets/svg/010-lines-menu2.svg"
 import menuCancel from "../../assets/svg/013-canceL.svg"
+import VideoLists from "./video-lists"
 
 
 const VideoMenu = ({ player, mixId }) => {
@@ -22,12 +23,12 @@ const VideoMenu = ({ player, mixId }) => {
 			switch (choice) {
 			case "search":
 				content.push(
-					<VideoSearch mixId={mixId} player={player}></VideoSearch>
+					<VideoSearch mixId={mixId} player={player} />
 				)
 				break
 			case "lists":
 				content.push(
-					<div>Lists</div>
+					<VideoLists player={player}/>
 				)
 				break
 
