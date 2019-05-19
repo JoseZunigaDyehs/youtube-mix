@@ -33,12 +33,23 @@ const VideoSearch = ({ player, mixId }) => {
 	}
 	const listSearch = () => {
 		const {searchs} = state.vj.mixById[mixId]
+		const { lists, listsById } = state.vj
 		const style = searchs.length > 12 ? {
 			overflowY: "scroll"
 		} : {}
+		let videosIds = []
+		lists.forEach(listId => {
+			const list = listsById[listId]
+			const { videos } = list
+			videos.forEach(video=>{
+				if(!videosIds.includes(video.videoId)) videosIds.push(video.videoId)
+			})
+		})
 		const vid = searchs.map((map, i) => {
+			const isInList = videosIds.includes(map.id.videoId)
 			return (
 				<VideoSearchVideo key={map.id.videoId}
+					isInList={isInList}
 					img={map.snippet.thumbnails.default.url}
 					title={map.snippet.title}
 					onClickPlay={() => {

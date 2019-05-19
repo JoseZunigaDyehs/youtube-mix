@@ -7,8 +7,7 @@ const VideoList = ({list}) => {
 
 	const content = () => {
 		const _listVideos = list.map(video => {
-			const { id: { videoId } } = video
-			const { snippet: { title, thumbnails: { default: { url } } } } = video
+			const { videoId, title, url } = video
 			return (
 				<div className="video">
 					<img src={url} alt="" srcset=""/>

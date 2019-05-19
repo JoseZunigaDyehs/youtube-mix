@@ -3,7 +3,13 @@ export const vjActions = props => {
 		searchYT: (mixId,videos) => {
 			props.dispatch({ type: "SEARCH_END", data: {mixId,videos} })
 		},
-		addVideoToList: (listId,video) => {
+		addVideoToList: (listId,_video) => {
+			const { id: { videoId }, snippet: { title, thumbnails: { default: { url } } } } = _video
+			const video = {
+				videoId,
+				title,
+				url,
+			}
 			props.dispatch({ type: "ADD_VIDEO_TO_LIST", data: {listId,video} })
 		},
 		removeVideoList: (listId,idVideo) => {

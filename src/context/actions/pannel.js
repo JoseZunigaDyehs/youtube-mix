@@ -3,8 +3,11 @@ export const pannelActions = props => {
 		loadVideosStart: () => {
 			props.dispatch({ type: "LOAD_VIDEOS_START" })
 		},
-		loadVideosEnd: () => {
-			props.dispatch({ type: "LOAD_VIDEOS_END" })
+		setNotification: (notification, notificationMessage, notificationType) => {
+			props.dispatch({type: 'SET_NOTIFICATION', data: {notification, notificationMessage, notificationType} })
+		},
+		fetching: (data) => {
+			props.dispatch({ type: 'FETCHING', data })
 		},
 	}
 }

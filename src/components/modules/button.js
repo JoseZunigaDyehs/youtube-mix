@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
-const Button = ({ icon, func, children }) => {
+const Button = ({ icon, func, children, className = '' }) => {
     const style = {
         backgroundImage: `url(${icon})`
     }
@@ -11,6 +11,7 @@ const Button = ({ icon, func, children }) => {
             onClick={() => {
                 func();
             }}
+            className={className}
         >
             {children}
         </button>

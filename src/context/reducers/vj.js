@@ -8,13 +8,11 @@ export const vjStates =
 			mixById: {
 				0: {
 					videoId: 0,
-					color: "red",
 					searchs: [
 					],
 				},
 				1: {
 					videoId: 0,
-					color: "red",
 					searchs: [
 					],
 				},
@@ -25,7 +23,8 @@ export const vjStates =
 					name: "Primera lista",
 					videos: [],
 				},
-			}
+			},
+			color: '#291743',
 		}
 
 export const vjReducer = (state, action) => {
@@ -37,26 +36,22 @@ export const vjReducer = (state, action) => {
 			return { ...state, mix }
 		}
 		case "ADD_VIDEO_TO_LIST": {
-			debugger
 			const { data: { listId, video } } = action
 			const list = state.listsById[listId]
 			list.videos.push(video)
-			return { ...state, list }
+			return { ...state }
 		}
 		case "REMOVE_VIDEO_TO_LIST": {
-			debugger
 			const { data: { listId, idVideo } } = action
 			const list = state.listsById[listId]
 			const { videos } = list
-			const _videos = videos.filter(video => video.id.videoId !== idVideo)
+			const _videos = videos.filter(video => video.videoId !== idVideo)
 			list.videos = _videos
-			return { ...state, list }
+			return { ...state }
 		}
 		case "UPDATE_VJ": {
-			debugger
-			const _state = _.cloneDeep(state)
-			debugger
-			return {...state,  }
+			const vj = action.data
+			return {...vj}
 		}
 		default:
 			return state

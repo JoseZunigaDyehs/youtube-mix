@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react"
 import { StoreContext } from "../../context/store/storeContext"
 
 import IsFetching from "../modules/isFetching"
-
+import Notification from "../modules/notification"
 import MixFader from "./mix-fader"
 import Video from "./video"
 import MainControl from "./main-control";
@@ -83,7 +83,7 @@ export const Mix = () => {
 			player = await new window.YT.Player(youtubePlayerAnchorOne, video1)
 			playerTwo = await new window.YT.Player(youtubePlayerAnchorTwo, video2)
 			Promise.all([player, playerTwo]).then(() => {
-				actions.pannel.loadVideosEnd()
+				actions.pannel.fetching(false)
 			})
 
 		} catch (error) {
@@ -133,6 +133,9 @@ export const Mix = () => {
 						<MainControl></MainControl>
 					</section>
 				</main>
+				<section>
+					<Notification />
+				</section>
 			</React.Fragment>
 		)
 	}
