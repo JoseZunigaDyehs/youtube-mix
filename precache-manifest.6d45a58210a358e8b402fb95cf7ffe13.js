@@ -1,10 +1,10 @@
 self.__precacheManifest = [
   {
-    "revision": "26b5e607fbe3258d984aed1311d985a4",
-    "url": "/youtube-mix/static/media/PalatinoLinotype-Roman.26b5e607.ttf"
+    "revision": "9e941c5e90eb4a08750d0dcaa02a7da4",
+    "url": "/youtube-mix/static/media/montserrat-bold-webfont.9e941c5e.svg"
   },
   {
-    "revision": "6eb40aefae2a89269e51",
+    "revision": "8a40dbc2b10f8681c93b",
     "url": "/youtube-mix/static/css/main.58c9ef97.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = [
     "url": "/youtube-mix/static/js/runtime~main.db9fcacd.js"
   },
   {
-    "revision": "8cad7b96ac6effab9c3f",
-    "url": "/youtube-mix/static/js/2.73afb9ac.chunk.js"
+    "revision": "005aa41d6c347e0a75fe",
+    "url": "/youtube-mix/static/js/2.4fffbfcd.chunk.js"
   },
   {
     "revision": "62b59787ce58e8a91c5b316861112c6a",
@@ -52,40 +52,44 @@ self.__precacheManifest = [
     "url": "/youtube-mix/static/media/PalatinoLinotype-Roman.3bc1fced.woff2"
   },
   {
-    "revision": "79798a38279fd62275fc6d5010c844be",
-    "url": "/youtube-mix/static/media/PalatinoLinotype-Roman.79798a38.woff"
+    "revision": "8d228081872cc6f3a672648a107ffe6b",
+    "url": "/youtube-mix/static/media/PalatinoLinotype-Roman.8d228081.eot"
   },
   {
     "revision": "7c50af893292a0ae815b60116dd7580e",
     "url": "/youtube-mix/static/media/montserrat-bold-webfont.7c50af89.eot"
   },
   {
-    "revision": "8d228081872cc6f3a672648a107ffe6b",
-    "url": "/youtube-mix/static/media/PalatinoLinotype-Roman.8d228081.eot"
-  },
-  {
-    "revision": "b3b3dabc13b51314b1124b191e153004",
-    "url": "/youtube-mix/static/media/montserrat-bold-webfont.b3b3dabc.ttf"
-  },
-  {
-    "revision": "035098a0de3dbcc89ff8d684d14f205d",
-    "url": "/youtube-mix/static/media/montserrat-bold-webfont.035098a0.woff"
+    "revision": "79798a38279fd62275fc6d5010c844be",
+    "url": "/youtube-mix/static/media/PalatinoLinotype-Roman.79798a38.woff"
   },
   {
     "revision": "aa0691b5916b576ff7ce6f48e00ea6f4",
     "url": "/youtube-mix/static/media/montserrat-bold-webfont.aa0691b5.woff2"
   },
   {
-    "revision": "6eb40aefae2a89269e51",
-    "url": "/youtube-mix/static/js/main.5e493954.chunk.js"
+    "revision": "035098a0de3dbcc89ff8d684d14f205d",
+    "url": "/youtube-mix/static/media/montserrat-bold-webfont.035098a0.woff"
+  },
+  {
+    "revision": "b3b3dabc13b51314b1124b191e153004",
+    "url": "/youtube-mix/static/media/montserrat-bold-webfont.b3b3dabc.ttf"
+  },
+  {
+    "revision": "8a40dbc2b10f8681c93b",
+    "url": "/youtube-mix/static/js/main.94b05dea.chunk.js"
+  },
+  {
+    "revision": "26b5e607fbe3258d984aed1311d985a4",
+    "url": "/youtube-mix/static/media/PalatinoLinotype-Roman.26b5e607.ttf"
   },
   {
     "revision": "cc1a408e9fc214608366e3f4fcd9a643",
     "url": "/youtube-mix/static/media/montserrat-light-webfont.cc1a408e.woff2"
   },
   {
-    "revision": "9e941c5e90eb4a08750d0dcaa02a7da4",
-    "url": "/youtube-mix/static/media/montserrat-bold-webfont.9e941c5e.svg"
+    "revision": "452416f94ba134f1152f734124b79456",
+    "url": "/youtube-mix/static/media/montserrat-light-webfont.452416f9.eot"
   },
   {
     "revision": "aa1b54ce06c1571fcbab26f8b402f8bb",
@@ -96,40 +100,36 @@ self.__precacheManifest = [
     "url": "/youtube-mix/static/media/montserrat-light-webfont.b6820ab8.ttf"
   },
   {
-    "revision": "452416f94ba134f1152f734124b79456",
-    "url": "/youtube-mix/static/media/montserrat-light-webfont.452416f9.eot"
-  },
-  {
     "revision": "aacc13d6145dafea499a0234c814e9ed",
     "url": "/youtube-mix/static/media/montserrat-semibold-webfont.aacc13d6.eot"
-  },
-  {
-    "revision": "81d5b2e98ac3fdd56285d7b447a5ac66",
-    "url": "/youtube-mix/static/media/montserrat-light-webfont.81d5b2e9.svg"
   },
   {
     "revision": "ed1739a60231d5bafd5500a52b3334b4",
     "url": "/youtube-mix/static/media/montserrat-semibold-webfont.ed1739a6.woff2"
   },
   {
+    "revision": "81d5b2e98ac3fdd56285d7b447a5ac66",
+    "url": "/youtube-mix/static/media/montserrat-light-webfont.81d5b2e9.svg"
+  },
+  {
     "revision": "4cff3f379769c381e0232649737d3bf7",
     "url": "/youtube-mix/static/media/montserrat-semibold-webfont.4cff3f37.woff"
   },
   {
-    "revision": "87949f6dda18e85599e299906ad6b506",
-    "url": "/youtube-mix/static/media/montserrat-semibold-webfont.87949f6d.ttf"
-  },
-  {
-    "revision": "4edde1433e1635a930d75724f4f58233",
-    "url": "/youtube-mix/static/media/PalatinoLinotype-Roman.4edde143.svg"
+    "revision": "f40507a3d0c438d726a344b6418d610c",
+    "url": "/youtube-mix/static/media/montserrat-ultralight-webfont.f40507a3.eot"
   },
   {
     "revision": "88dff7076be06075d5952381ec6f78fd",
     "url": "/youtube-mix/static/media/montserrat-semibold-webfont.88dff707.svg"
   },
   {
-    "revision": "f40507a3d0c438d726a344b6418d610c",
-    "url": "/youtube-mix/static/media/montserrat-ultralight-webfont.f40507a3.eot"
+    "revision": "87949f6dda18e85599e299906ad6b506",
+    "url": "/youtube-mix/static/media/montserrat-semibold-webfont.87949f6d.ttf"
+  },
+  {
+    "revision": "8053aee1332546e25ce9b9bb69e7241e",
+    "url": "/youtube-mix/static/media/montserrat-ultralight-webfont.8053aee1.woff"
   },
   {
     "revision": "f94fd07605c5cf2c310e761a09f2bb78",
@@ -140,15 +140,15 @@ self.__precacheManifest = [
     "url": "/youtube-mix/static/media/montserrat-ultralight-webfont.77bdee58.ttf"
   },
   {
-    "revision": "8053aee1332546e25ce9b9bb69e7241e",
-    "url": "/youtube-mix/static/media/montserrat-ultralight-webfont.8053aee1.woff"
+    "revision": "4edde1433e1635a930d75724f4f58233",
+    "url": "/youtube-mix/static/media/PalatinoLinotype-Roman.4edde143.svg"
   },
   {
     "revision": "7f815a04c45075cfa2a929b13203af62",
     "url": "/youtube-mix/static/media/montserrat-ultralight-webfont.7f815a04.svg"
   },
   {
-    "revision": "3106f807e6c507cc7caec23b410172df",
+    "revision": "1df499b8331a37c93fa87ba0f361c29b",
     "url": "/youtube-mix/index.html"
   }
 ];
