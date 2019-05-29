@@ -3,26 +3,17 @@ import Button from "../modules/button"
 import playIcon from "../../assets/svg/001-play.svg"
 import addIcon from "../../assets/svg/014-add-song.svg"
 
-const VideoList = ({list}) => {
-
+const VideoList = ({ list }) => {
 	const content = () => {
 		const _listVideos = list.map(video => {
 			const { videoId, title, url } = video
 			return (
 				<div className="video">
-					<img src={url} alt="" srcset=""/>
+					<img src={url} alt="" srcset="" />
 					<p>{title}</p>
 					<div className="buttons">
-						<Button
-							func={null}
-							name={""}
-							icon={playIcon}
-						/>
-						<Button
-							func={null}
-							name={""}
-							icon={addIcon}
-						/>
+						<Button func={null} name={""} icon={playIcon} />
+						<Button func={null} name={""} icon={addIcon} />
 					</div>
 				</div>
 			)
@@ -31,7 +22,6 @@ const VideoList = ({list}) => {
 	}
 
 	return content()
-
 }
 
 export default VideoList

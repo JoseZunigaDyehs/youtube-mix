@@ -1,7 +1,5 @@
-import React from 'react';
+import React from "react"
 
-const Knob = () => {
-    
-}
+const Knob = () => {}
 
-export default Knob;
+export default Knob

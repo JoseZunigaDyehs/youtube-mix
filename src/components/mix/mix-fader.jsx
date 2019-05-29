@@ -3,8 +3,7 @@ import React, { useMemo, useRef, useState } from "react"
 //TODO: CORREGIR FADER
 
 function MixFader({ playerOne, playerTwo }) {
-
-	const [positionFader, setPositionFader ] =useState((400 / 2 + 2) - 10)
+	const [positionFader, setPositionFader] = useState(400 / 2 + 2 - 10)
 	const [total, setTotal] = useState(400)
 	const [fader, setFader] = useState(false)
 	const faderDiv = useRef(null)
@@ -14,14 +13,14 @@ function MixFader({ playerOne, playerTwo }) {
 	}
 
 	const setFaderMix = position => {
-		const porcSecondTrack = ( (position ) * 100) / total,
+		const porcSecondTrack = (position * 100) / total,
 			porcFirstTrack = 100 - porcSecondTrack
 		debugger
 		playerOne.setVolume(porcFirstTrack)
 		playerTwo.setVolume(porcSecondTrack)
 	}
 
-	const onPointerHandle = (e) => {
+	const onPointerHandle = e => {
 		if (!fader) {
 			return
 		} else {
@@ -32,13 +31,13 @@ function MixFader({ playerOne, playerTwo }) {
 				faderDivMiddlePosition = faderDivEndPosition / 20
 			let left = e.screenX
 			let leftFader
-			if(left - 20 <= faderDivStartPosition){
+			if (left - 20 <= faderDivStartPosition) {
 				left = 0
 				leftFader = 0
-			}else if(left >= faderDivEndPosition - 10 ){
+			} else if (left >= faderDivEndPosition - 10) {
 				left = total - 20
-				 leftFader = total
-			}else{
+				leftFader = total
+			} else {
 				left = left - faderDivStartPosition
 				leftFader = left - 20 >= total ? total : left
 			}
@@ -58,21 +57,29 @@ function MixFader({ playerOne, playerTwo }) {
 			style.cursor = "pointer"
 		}
 
-		return useMemo(() => <div
-			className={fader ? "mixfader over" : "mixfader"}
-			onPointerMove={(e) => {
-				onPointerHandle(e)
-			}}
-      
-		>
-			<div ref={faderDiv} className="fader" style={style} onClick={() => {
-				toggleOver()
-			}}></div>
-		</div>, [fader, positionFader, total])
+		return useMemo(
+			() => (
+				<div
+					className={fader ? "mixfader over" : "mixfader"}
+					onPointerMove={e => {
+						onPointerHandle(e)
+					}}
+				>
+					<div
+						ref={faderDiv}
+						className="fader"
+						style={style}
+						onClick={() => {
+							toggleOver()
+						}}
+					/>
+				</div>
+			),
+			[fader, positionFader, total]
+		)
 	}
 
 	return content()
-
 }
 
 export default MixFader

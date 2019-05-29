@@ -7,7 +7,6 @@ const VideoDuration = ({ mixId, player, duration, start }) => {
 			debugger
 			const realAdvance = (duration / 100) * advance
 			setAdvance(realAdvance)
-
 		}
 		//getSeconds();
 	}, [duration, start])
@@ -20,7 +19,7 @@ const VideoDuration = ({ mixId, player, duration, start }) => {
 
 	return (
 		<div className="duration">
-			<div className="advance" style={{ width: advance + "%" }}></div>
+			<div className="advance" style={{ width: advance + "%" }} />
 		</div>
 	)
 }

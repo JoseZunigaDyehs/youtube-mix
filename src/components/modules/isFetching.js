@@ -1,30 +1,29 @@
-import React, { useMemo } from 'react';
-import PropTypes from 'prop-types'
+import React, { useMemo } from "react"
+import PropTypes from "prop-types"
 
-const IsFetching = ({fetching, children, showChildren}) => {
+const IsFetching = ({ fetching, children, showChildren }) => {
+	const content = () => {
+		return useMemo(() => {
+			if (fetching) {
+				return (
+					<div className="spinner">
+						<div className="loader" />
+					</div>
+				)
+			}
+			return null
+		}, [fetching, children, showChildren])
+	}
 
-    const content = () => {
-        return useMemo(() => {
-            if(fetching){
-                return (
-                    <div className="spinner">
-                    <div className="loader"></div>
-                    </div>
-                )
-            }
-            return null
-        }, [fetching, children, showChildren]);
-    }
-
-    return content();
+	return content()
 }
 
-export default IsFetching;
+export default IsFetching
 
 IsFetching.defaultProps = {
-    showChildren: false
+	showChildren: false
 }
 
 IsFetching.propTypes = {
-    showChildren: PropTypes.bool
+	showChildren: PropTypes.bool
 }

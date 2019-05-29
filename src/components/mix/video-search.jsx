@@ -6,64 +6,70 @@ import { searchYTAPI } from "../../api"
 import VideoSearchVideo from "./video-search-video"
 
 const VideoSearch = ({ player, mixId }) => {
-	const [videos, setVideos] = useState([])
+	const [videosIds, setVideosIds] = useState([])
 	const { state, actions } = useContext(StoreContext)
 	const input = useRef(null)
 
 	useEffect(() => {
-		const { mixById } = state.vj
-		const mix = mixById[mixId]
-		const videos = mix.searchs
-		setVideos(videos)
-		input.current.focus()
-	}, [videos,player, mixId])
-
-	const clickHandlePlay = video => {
-		const { id } = video
-		player.loadVideoById(id, 0, CONSTANTS.QUALITY)
-	}
-	const handledSubmit = async (e) => {
-		e.preventDefault()
-		const value = input.current.value
-		const videos = await searchYTAPI(value)
-		actions.vj.searchYT(mixId,videos)
-	}
-	const clickHandleAdd = video => {
-		actions.vj.addVideoToList(0,video)
-	}
-	const listSearch = () => {
-		const {searchs} = state.vj.mixById[mixId]
 		const { lists, listsById } = state.vj
-		const style = searchs.length > 12 ? {
-			overflowY: "scroll"
-		} : {}
-		let videosIds = []
+		let videosIdsList = []
 		lists.forEach(listId => {
 			const list = listsById[listId]
 			const { videos } = list
-			videos.forEach(video=>{
-				if(!videosIds.includes(video.videoId)) videosIds.push(video.videoId)
+			videos.forEach(video => {
+				if (!videosIds.includes(video.videoId)) videosIds.push(video.videoId)
 			})
 		})
+		setVideosIds(videosIdsList)
+		input.current.focus()
+	}, [player, mixId])
+
+	const clickHandlePlay = video => {
+		const {
+			id: { videoId }
+		} = video
+		player.loadVideoById(videoId, 0, CONSTANTS.QUALITY)
+	}
+	const handledSubmit = async e => {
+		e.preventDefault()
+		const value = input.current.value
+		const videos = await searchYTAPI(value)
+		actions.vj.searchYT(mixId, videos)
+	}
+	const clickHandleAdd = video => {
+		actions.vj.addVideoToList(0, video)
+	}
+	const listSearch = () => {
+		const { searchs } = state.vj.mixById[mixId]
+		const style =
+			searchs.length > 12
+				? {
+					overflowY: "scroll"
+				  }
+				: {}
 		const vid = searchs.map((map, i) => {
 			const isInList = videosIds.includes(map.id.videoId)
 			return (
-				<VideoSearchVideo key={map.id.videoId}
+				<VideoSearchVideo
+					key={map.id.videoId}
 					isInList={isInList}
 					img={map.snippet.thumbnails.default.url}
 					title={map.snippet.title}
 					onClickPlay={() => {
 						clickHandlePlay(map)
 					}}
-					onClickAdd={()=>{
+					onClickAdd={() => {
 						clickHandleAdd(map)
 					}}
-				></VideoSearchVideo>
+				/>
 			)
 		})
-		debugger
 
-		return <div className="list" style={style}>{vid}</div>
+		return (
+			<div className="list" style={style}>
+				{vid}
+			</div>
+		)
 	}
 	const content = () => {
 		const { mixById } = state.vj
@@ -73,7 +79,7 @@ const VideoSearch = ({ player, mixId }) => {
 			() => (
 				<section className={"pannel-search active"}>
 					<form
-						onSubmit={(e) => {
+						onSubmit={e => {
 							handledSubmit(e)
 						}}
 					>
@@ -82,7 +88,7 @@ const VideoSearch = ({ player, mixId }) => {
 					{listSearch()}
 				</section>
 			),
-			[videos]
+			[videosIds]
 		)
 	}
 

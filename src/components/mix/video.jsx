@@ -7,17 +7,20 @@ import VideoDuration from "./video-duration"
 
 //Div que hace referencia al objeto padre (iframe API Youtube)
 const Video = ({ mixId, reference, player, duration, start }) => {
-
 	const content = () => {
-
 		return useMemo(() => {
 			return (
 				<div className={`mix mix-track${mixId === 0 ? "" : " secondVideo"}`}>
 					<div className="iframe">
 						<div ref={reference} />
 					</div>
-					<VideoDuration mixId={mixId} player={player} duration={duration} start={start}/>
-					<VideoControl player={player} mixId={mixId}/>
+					<VideoDuration
+						mixId={mixId}
+						player={player}
+						duration={duration}
+						start={start}
+					/>
+					<VideoControl player={player} mixId={mixId} />
 				</div>
 			)
 		}, [reference, player, duration, start])

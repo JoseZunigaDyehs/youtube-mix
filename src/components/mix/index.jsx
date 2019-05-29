@@ -5,12 +5,12 @@ import IsFetching from "../modules/isFetching"
 import Notification from "../modules/notification"
 import MixFader from "./mix-fader"
 import Video from "./video"
-import MainControl from "./main-control";
+import MainControl from "./main-control"
 
 let player, playerTwo
 
 /**
- * Tiene los botones 
+ * Tiene los botones
  * Tiene las acciones de los botones
  * renderiza ambos videos y este componente debe tener todas las acciones
  */
@@ -18,21 +18,20 @@ let player, playerTwo
 /**
  * Crea Iframes from youtube API
  * Usa ref para la referencia de ambos iframes
- * 
+ *
  * TODO: Pasar todas las funcionalidades a los controles
  */
 
 export const Mix = () => {
-
-	const [ myPlayer, setMyPlayer ] = useState({
+	const [myPlayer, setMyPlayer] = useState({
 		duration: 0,
 		player: undefined,
-		start: 0,
+		start: 0
 	})
-	const [ myPlayerTwo, setMyPlayerTwo ] = useState({
+	const [myPlayerTwo, setMyPlayerTwo] = useState({
 		duration: 0,
 		player: undefined,
-		start: 0,
+		start: 0
 	})
 	const { state, actions } = useContext(StoreContext)
 	let youtubePlayerAnchorOne = useRef(null)
@@ -50,9 +49,6 @@ export const Mix = () => {
 			const firstScriptTag = document.getElementsByTagName("script")[0]
 			firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
 		}
-		// else{
-		//   loadVideos()
-		// }
 	}
 
 	const loadVideos = async () => {
@@ -60,10 +56,10 @@ export const Mix = () => {
 			videoId: "LxtppUZthug",
 			playerVars: {
 				controls: 0,
-				rel: 0,
+				rel: 0
 			},
 			controls: 0,
-			showInfo:0,
+			showInfo: 0,
 			events: {
 				onReady: onReadyYoutube,
 				onStateChange: onChangeYoutube
@@ -72,9 +68,9 @@ export const Mix = () => {
 		const video2 = {
 			videoId: "1gG1gqE05Gk",
 			playerVars: {
-				controls: 0,
+				controls: 0
 			},
-			showInfo:0,
+			showInfo: 0,
 			events: {
 				onReady: onReadyYoutube
 			}
@@ -85,9 +81,9 @@ export const Mix = () => {
 			Promise.all([player, playerTwo]).then(() => {
 				actions.pannel.fetching(false)
 			})
-
 		} catch (error) {
 			console.log(error)
+			actions.pannel.fetching(false)
 		}
 	}
 
@@ -95,12 +91,12 @@ export const Mix = () => {
 		event.target.setVolume(50)
 		//SETEAR DURATION
 		const duration = event.target.getDuration()
-		if(event.target.m==="player"){
+		if (event.target.m === "player") {
 			const _player = myPlayer
 			_player.duration = duration
 			_player.player = event.target
 			setMyPlayer(_player)
-		}else{
+		} else {
 			const _player = myPlayerTwo
 			_player.duration = duration
 			_player.player = event.target
@@ -109,11 +105,11 @@ export const Mix = () => {
 	}
 
 	const onChangeYoutube = event => {
-		if(event.target.m==="player"){
+		if (event.target.m === "player") {
 			const _player = myPlayer
 			_player.advance = event.target.getCurrentTime()
 			setMyPlayer(_player)
-		}else{
+		} else {
 			const _player = myPlayerTwo
 			_player.advance = event.target.getCurrentTime()
 			setMyPlayerTwo(_player)
@@ -127,10 +123,26 @@ export const Mix = () => {
 				<IsFetching fetching={pannel.isFetching} showChildren={true} />
 				<main className="mix">
 					<section className="mix-content">
-						<Video player={player} mixId={0} reference={r => { youtubePlayerAnchorOne = r }} duration={myPlayer.duration} start={myPlayer.start}/>
-						<Video player={playerTwo} mixId={1} reference={r => { youtubePlayerAnchorTwo = r }} duration={myPlayerTwo.duration} start={myPlayerTwo.start}/>
+						<Video
+							player={player}
+							mixId={0}
+							reference={r => {
+								youtubePlayerAnchorOne = r
+							}}
+							duration={myPlayer.duration}
+							start={myPlayer.start}
+						/>
+						<Video
+							player={playerTwo}
+							mixId={1}
+							reference={r => {
+								youtubePlayerAnchorTwo = r
+							}}
+							duration={myPlayerTwo.duration}
+							start={myPlayerTwo.start}
+						/>
 						<MixFader playerOne={player} playerTwo={playerTwo} />
-						<MainControl></MainControl>
+						<MainControl />
 					</section>
 				</main>
 				<section>

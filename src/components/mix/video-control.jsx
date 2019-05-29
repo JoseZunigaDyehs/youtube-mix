@@ -49,7 +49,7 @@ const VideoControl = ({ player, mixId }) => {
 				function: () => {
 					player.nextVideo()
 				}
-			},
+			}
 		]
 
 		return buttons.map((button, i) => {
@@ -66,14 +66,13 @@ const VideoControl = ({ player, mixId }) => {
 	}
 
 	const content = () => {
-		const style = mixId===0?{paddingRight: 200}:{paddingLeft:200}
+		const style = mixId === 0 ? { paddingRight: 200 } : { paddingLeft: 200 }
 		return (
 			<React.Fragment>
-				<VideoMenu
-					player={player}
-					mixId={mixId}
-				/>
-				<div className="buttons" style={style}>{fillButtons()}</div>
+				<VideoMenu player={player} mixId={mixId} />
+				<div className="buttons" style={style}>
+					{fillButtons()}
+				</div>
 			</React.Fragment>
 		)
 	}
